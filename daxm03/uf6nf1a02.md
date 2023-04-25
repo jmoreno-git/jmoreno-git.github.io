@@ -200,7 +200,7 @@ public class Category {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Category)) {
             return false;
         }
         final Category other = (Category) obj;
