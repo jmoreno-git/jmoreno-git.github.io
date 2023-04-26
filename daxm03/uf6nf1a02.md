@@ -1188,6 +1188,20 @@ public class CategProdUI {
 }
 ```
 
+Aprofitem aquest exemple per introduir els genèrics, en aquest cas, dos mètodes genèrics:
+
+    public <T> void displaySingle(T t)
+    public <T> void displayMultiple(List<T> data)
+
+on T representa qualsevol tipus d'objecte.
+
+Aquest sistema permet crear mètodes per a tractar objectes genèrics (representats pel tipus T, en aquest cas), sense necessitat de crear un mètode amb nom diferent per a cada possible tipus.
+
+Cas de no utilitzar genèrics, el mètode `void displaySingle(T t)'  seria substituït per dos mètodes:
+ * void displaySingleCategory(Category c)
+ * void displaySingleProduct(Product p)
+
+
 [Descàrrega del codi](assets/6.1/categproduct.zip)
 
 Exercici proposat: 
