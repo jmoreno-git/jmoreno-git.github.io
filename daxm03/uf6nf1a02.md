@@ -1334,7 +1334,6 @@ public class CategProdException extends RuntimeException {
         this.status = status;
     }
 
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -1348,7 +1347,9 @@ public class CategProdException extends RuntimeException {
 }
 ```
 
-Modifiquem els mètodes de les classes DAO per silenciar l'excepció SQL i llançar-ne una de pròpia. A continuació, com a exemple, el mètode insert():
+Podem escollir com a superclasse de la nostra excepció *Exception* o *RuntimeException*. Hem escollit la segona opció perquè són del tipus no verificades (*non-checked*). D'aquesta manera ens estalviem declarar-la a tots els mètodes pels que passa sense ser capturada. No ens hem d'oblidar, però, de la necessitat de capturar-la en algun lloc per donar el tractament adequat i evitar que el programa falli.
+
+Modifiquem els mètodes de les classes DAO per silenciar l'excepció SQL i llançar-ne una de pròpia. A continuació, com a exemple, el mètode *insert()*:
 
 ```java
     public int insert(Category category) {
@@ -1398,7 +1399,7 @@ Capturem l'excepció al controlador, verificant el codi (status) per decidir el 
     }
 ```
 
-Al model, suprimim les comprovacions de codi existent per provocar l'error i provar el funcionament de la captura:
+Al model, suprimim les comprovacions de codi existents per provocar així l'error i provar el funcionament de la captura:
 
 ```java
     public int addCategory(Category category) {
