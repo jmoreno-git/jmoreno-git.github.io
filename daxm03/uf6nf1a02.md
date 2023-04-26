@@ -1198,6 +1198,7 @@ on T representa qualsevol tipus d'objecte.
 Aquest sistema permet crear mètodes per a tractar objectes genèrics (representats pel tipus T, en aquest cas), sense necessitat de crear un mètode amb nom diferent per a cada possible tipus.
 
 Cas de no utilitzar genèrics, el mètode *void displaySingle(T t)*  seria substituït per dos mètodes:
+
     void displaySingleCategory(Category c)
     void displaySingleProduct(Product p)
 
