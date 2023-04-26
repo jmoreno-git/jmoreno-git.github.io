@@ -1188,7 +1188,7 @@ public class CategProdUI {
 }
 ```
 
-Aprofitem aquest exemple per introduir els genèrics, en aquest cas, dos mètodes genèrics:
+Aprofitem aquest exemple per introduir els **genèrics**, en aquest cas, dos mètodes genèrics:
 
     public <T> void displaySingle(T t)
     public <T> void displayMultiple(List<T> data)
@@ -1197,19 +1197,95 @@ on T representa qualsevol tipus d'objecte.
 
 Aquest sistema permet crear mètodes per a tractar objectes genèrics (representats pel tipus T, en aquest cas), sense necessitat de crear un mètode amb nom diferent per a cada possible tipus.
 
-Cas de no utilitzar genèrics, el mètode `void displaySingle(T t)'  seria substituït per dos mètodes:
- * void displaySingleCategory(Category c)
- * void displaySingleProduct(Product p)
-
+Cas de no utilitzar genèrics, el mètode *void displaySingle(T t)*  seria substituït per dos mètodes:
+    void displaySingleCategory(Category c)
+    void displaySingleProduct(Product p)
 
 [Descàrrega del codi](assets/6.1/categproduct.zip)
 
-Exercici proposat: 
+**Exercici proposat**: 
 
 1. Completar totes les funcionalitats possibles de l'aplicació. Assegurar que es proven totes les funcionalitats tenint en compte tots els fluxos alternatius de cada una d'elles, de manera que es controlin adequadament tots els errors.
 2. Modificar el codi de manera que el control d'errors es faci mitjançant excepcions.
 
 ## Tractament d'errors d'accés a base de dades
+
+### Pas de SQLException per capturar-les a la capa de presentació o al controlador
+
+Una opció interessant per al tractament de les excepcions d'accés a dades és no capturar-les als DAO i deixar que sigui la capa de control la que les capturi, decideixi el tractament que és convenient i prepari la informació per a l'usuari.
+
+En aquest cas, caldrà modificar els mètodes de les classes DAO, suprimint els catch de SQLException i afegint-los la declaració de pas de l'excepció. Per exemple, per al mètode insert(), quedaria així:
+
+```java
+    public int insert(Category category) throws SQLException {
+        int result = 0;
+        //get a connection and perform query
+            Connection conn = dbConnect.getConnection();
+            String query = "insert into categories values (null, ?, ?)";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, category.getCode());
+            st.setString(2, category.getName());
+            result = st.executeUpdate(); 
+            //close resources  
+            st.close();
+            conn.close()     
+        return result;
+    }
+ ```
+A la classe del model (servei de dades) caldrà afegir a cada mètode també la declaració de pas de l'excepció:
+
+```java
+    public int addCategory(Category category) throws SQLException {
+        int result = 0;
+       if (category != null) { 
+           //perform proper validations before attempting insertion
+           boolean dataValid = true;
+           String code = category.getCode();
+           if (code==null) dataValid = false; //code must not be null
+           else { //assess that code does not exist
+               Category c = categoryDao.selectWhereCode(code);
+               if (c != null) dataValid = false;
+           }
+           if (dataValid) {  //perform insertion
+               result = categoryDao.insert(category);
+           }
+       }
+        result = categoryDao.insert(category);
+        return result;
+    }
+```
+
+Per poder fer proves d'insercions amb codis existents, cal comentar provisionalment les línies anteriors que verifiquen si el codi existeix.
+
+I, per últim, als mètodes de control caldrà afegir un *try-catch* per tractar aquesta excepció:
+
+```java
+    /**
+     * reads from user the data for a new category and adds it to database
+     */
+    public void doAddCategory() {
+        Category cat = doInputCategory();
+        String message="";
+        if (cat != null) {
+            try {
+                int result = model.addCategory(cat);
+                message = (result == 1) ? "Successfully added" : "Not added";
+                doAlert(message);                
+            } catch (SQLException e) {
+                //determine,if needed, the especific cause of exception
+                if (e.getSQLState().startsWith("23")) {  //constraint violation
+                    message = String.format("Category not added because code %s already exists\n", cat.getCode());
+                }
+                //TODO: maybe consider other causes
+            }
+        } else {
+            message = "Error validating data";
+        }
+        doAlert(message);
+    }
+```
+
+### Silenciament de SQLException i llançament d'excepcions pròpies
 
 Els següents enllaçs contenen informació sobre els codis estàndar d'errors de SQL:
 
@@ -1219,9 +1295,9 @@ Els següents enllaçs contenen informació sobre els codis estàndar d'errors d
 
 [Errors MySql i relació amb SQLSTATE](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-error-sqlstates.html)
 
-Implementarem ara un exemple de procediment millorat de tractament dels errors de SQL que no obligui a passar les excepcions de la capa d'accés a dades fins al controlador.
+Implementarem ara un exemple millorat de tractament dels errors de SQL que no obligui a passar les excepcions *SQLException* de la capa d'accés a dades fins al controlador.
 
-Definim una excepció pròpia específica del nostre programa que contingui un atribut *status* amb informació de què ha passat.
+Definim una excepció pròpia específica del nostre programa que contingui un atribut *status* (o el nom que ens convingui) amb informació de què ha passat.
 
 ```java
 public class CategProdException extends RuntimeException {
@@ -1264,7 +1340,7 @@ public class CategProdException extends RuntimeException {
 }
 ```
 
-Exemple de codi (al mètode insert()) per silenciar l'excepció SQL i llançar-ne una de pròpia:
+Modifiquem els mètodes de les classes DAO per silenciar l'excepció SQL i llançar-ne una de pròpia. A continuació, com a exemple, el mètode insert():
 
 ```java
     public int insert(Category category) {
@@ -1278,14 +1354,15 @@ Exemple de codi (al mètode insert()) per silenciar l'excepció SQL i llançar-n
             result = st.executeUpdate();
         } catch (SQLException ex) {
             //Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            //throw our exception
             throw new CategProdException("SQL insert error", ex, ex.getSQLState());
         }        
         return result;
     }
  ```
-L'atribut *status* de l'excepció conté el codi SQLSTATE de l'excepció que s'havia llançat.
+L'atribut *status* de l'excepció conté el codi ***SQLSTATE*** de l'excepció que s'havia llançat.
 
-Captura de l'excepció al controlador, verificant el codi (status) per decidir el missatge a l'usuari:
+Capturem l'excepció al controlador, verificant el codi (status) per decidir el missatge a l'usuari:
 
 ```java
     /**
@@ -1300,9 +1377,11 @@ Captura de l'excepció al controlador, verificant el codi (status) per decidir e
                 message = (result == 1) ? "Successfully added" : "Not added";
                 doAlert(message);                
             } catch (CategProdException e) {
+                //determine,if needed, the especific cause of exception
                 if (e.getStatus().startsWith("23")) {  //constraint violation
                     message = String.format("Category not added because code %s already exists\n", cat.getCode());
                 }
+                //TODO: maybe consider other causes
             }
         } else {
             message = "Error validating data";
