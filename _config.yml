@@ -1,5 +1,5 @@
-# theme: jekyll-theme-slate
-remote_theme: pages-themes/modernist@v0.2.0
+theme: jekyll-theme-slate
+# remote_theme: pages-themes/modernist@v0.2.0
 title: José Moreno - Apunts
 description: Materials docents per a cicles formatius d'Informàtica
 show_downloads: false
