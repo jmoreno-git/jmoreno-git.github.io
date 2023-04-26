@@ -1195,3 +1195,127 @@ Exercici proposat:
 1. Completar totes les funcionalitats possibles de l'aplicació. Assegurar que es proven totes les funcionalitats tenint en compte tots els fluxos alternatius de cada una d'elles, de manera que es controlin adequadament tots els errors.
 2. Modificar el codi de manera que el control d'errors es faci mitjançant excepcions.
 
+## Tractament d'errors d'accés a base de dades
+
+Els següents enllaçs contenen informació sobre els codis estàndar d'errors de SQL:
+
+[SQLSTATE a wikipedia](https://en.wikipedia.org/wiki/SQLSTATE)
+
+[SQLstate messages](https://www.ibm.com/docs/en/db2woc?topic=messages-sqlstate)
+
+[Errors MySql i relació amb SQLSTATE](https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-error-sqlstates.html)
+
+Implementarem ara un exemple de procediment millorat de tractament dels errors de SQL que no obligui a passar les excepcions de la capa d'accés a dades fins al controlador.
+
+Definim una excepció pròpia específica del nostre programa que contingui un atribut *status* amb informació de què ha passat.
+
+```java
+public class CategProdException extends RuntimeException {
+
+    private String status;
+    
+    public CategProdException() {
+        super();
+    }
+
+    public CategProdException(String message, String status) {
+        super(message);
+        this.status = status;
+    }
+
+    public CategProdException(String message, Throwable cause, String status) {
+        super(message, cause);
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("CategProdException{");
+        sb.append("[").append(super.toString()).append("]");
+        sb.append("[status=").append(status).append("]");
+        sb.append('}');
+        return sb.toString();
+    }
+    
+}
+```
+
+Exemple de codi (al mètode insert()) per silenciar l'excepció SQL i llançar-ne una de pròpia:
+
+```java
+    public int insert(Category category) {
+        int result = 0;
+        //get a connection and perform query
+        try ( Connection conn = dbConnect.getConnection()) {
+            String query = "insert into categories values (null, ?, ?)";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, category.getCode());
+            st.setString(2, category.getName());
+            result = st.executeUpdate();
+        } catch (SQLException ex) {
+            //Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            throw new CategProdException("SQL insert error", ex, ex.getSQLState());
+        }        
+        return result;
+    }
+ ```
+L'atribut *status* de l'excepció conté el codi SQLSTATE de l'excepció que s'havia llançat.
+
+Captura de l'excepció al controlador, verificant el codi (status) per decidir el missatge a l'usuari:
+
+```java
+    /**
+     * reads from user the data for a new category and adds it to database
+     */
+    public void doAddCategory() {
+        Category cat = doInputCategory();
+        String message="";
+        if (cat != null) {
+            try {
+                int result = model.addCategory(cat);
+                message = (result == 1) ? "Successfully added" : "Not added";
+                doAlert(message);                
+            } catch (CategProdException e) {
+                if (e.getStatus().startsWith("23")) {  //constraint violation
+                    message = String.format("Category not added because code %s already exists\n", cat.getCode());
+                }
+            }
+        } else {
+            message = "Error validating data";
+        }
+        doAlert(message);
+    }
+```
+
+Al model, suprimim les comprovacions de codi existent per provocar l'error i provar el funcionament de la captura:
+
+```java
+    public int addCategory(Category category) {
+        int result = 0;
+//        if (category != null) { 
+//            //perform proper validations before attempting insertion
+//            boolean dataValid = true;
+//            String code = category.getCode();
+//            if (code==null) dataValid = false; //code must not be null
+//            else { //assess that code does not exist
+//                Category c = categoryDao.selectWhereCode(code);
+//                if (c != null) dataValid = false;
+//            }
+//            if (dataValid) {  //perform insertion
+//                result = categoryDao.insert(category);
+//            }
+//        }
+        result = categoryDao.insert(category);
+        return result;
+    }
+```
