@@ -1214,7 +1214,7 @@ Cas de no utilitzar genèrics, el mètode *void displaySingle(T t)*  seria subst
 
 Una opció interessant per al tractament de les excepcions d'accés a dades és no capturar-les als DAO i deixar que sigui la capa de control la que les capturi, decideixi el tractament que és convenient i prepari la informació per a l'usuari.
 
-En aquest cas, caldrà modificar els mètodes de les classes DAO, suprimint els catch de SQLException i afegint-los la declaració de pas de l'excepció. Per exemple, per al mètode insert(), quedaria així:
+En aquest cas, caldrà modificar els mètodes de les classes DAO, suprimint els catch de [SQLException])https://docs.oracle.com/en/java/javase/19/docs/api/java.sql/java/sql/SQLException.html() i afegint-los la declaració de pas de l'excepció. Per exemple, per al mètode insert(), quedaria així:
 
 ```java
     public int insert(Category category) throws SQLException {
@@ -1284,6 +1284,13 @@ I, per últim, als mètodes de control caldrà afegir un *try-catch* per tractar
         doAlert(message);
     }
 ```
+
+La classe SQLException té dos mètodes que ens ajuden a determinar la causa de l'error:
+
+ * int getErrorCode(): codi del proveïdor del SGBD per a l'error que s'ha produït
+ * String getSQLState(): [SQLSTATE](https://en.wikipedia.org/wiki/SQLSTATE) de l'error
+
+
 
 ### Silenciament de SQLException i llançament d'excepcions pròpies
 
