@@ -3,20 +3,21 @@
 ## Introducció
 Les aplicacions treballen amb objectes en memòria. En canvi, les bases de dades relacionals treballen amb taules i relacions. A les tècniques de processament de la informació dels objectes per fer-los persistents en forma d'entrades de taules i relacions se les anomena mapeig objecte relacional (***ORM: object relational mapping***).
 
-Un patró de disseny molt utilitzat i pràctic per a dissenyar la capa d'accés a dades és el patró ***DAO. Data Access Object***.
+Un patró de disseny molt utilitzat i pràctic per a dissenyar la capa d'accés a dades és el patró [***DAO. Data Access Object***](https://en.wikipedia.org/wiki/Data_access_object).
 
-Anem a il·lustrar l'ORM amb un exemple d'aplicació amb dues entitats amb una relació 1xn.
+Anem a il·lustrar l'*ORM* amb un exemple d'aplicació amb dues entitats amb una relació 1xn.
 
 ## Objectius
 
-  - Implementar el patró DAO per a accés a dades.
-  - Crear la base de dades definint correctament les relacions entre les
-    entitats i les restriccions d'integritat.
+  - Implementar una arquitectura adequada amb una correcta assignació de responsabilitats a les classes.
+  - Implementar el patró *DAO* per a accés a dades.
+  - Crear la base de dades definint correctament les relacions entre les entitats i les restriccions d'integritat.
   - Crear un joc de dades de prova adient.
+  - Desenvolupar la lògica de control i la interacció amb l'usuari separats del model.
 
 ## Desenvolupament de l'aplicació Store: Enunciat
 
-Una empresa ens ha encarregat que desenvolupem una aplicació per gestionar els seus productes, els quals estan agrupats en categories. Una categoria pot tenir 0 o diversos productes. Cada producte només pot pertànyer a una categoria.
+Una empresa ens ha encarregat que desenvolupem una aplicació per gestionar els seus _productes_, els quals estan agrupats en _categories_. Una categoria pot tenir 0 o diversos productes. Cada producte només pot pertànyer a una categoria.
 
 El que necessita gestionar aquesta empresa és el següent:
 
@@ -69,7 +70,7 @@ INSERT INTO products VALUES
     (9, "P09", "product09", 109, 1009.0, 3);
 ```
 
-Les claus primàries s'han escollit de tipus autoincremental.
+Les claus primàries s'han escollit de tipus autoincremental. En conseqüència, seran gestionades pel sistema gestor de bases de dades. El nostre programa no definirà els valors d'aquests camps.
 
 Les restriccions d'integritat de la clau forana que relaciona producte amb categoria estan definides de manera que les actualitzacions es propaguen en cascada però els esborrats no, per evitar pèrdues massives de dades en esborrar.
 
@@ -119,11 +120,20 @@ public final class DbConnect {
 }
 ```
 
+Cal efectuar una càrrega inicial del driver corresponent al SGBD i el nostre llenguatge de programació. Això es pot fer en iniciar el programa o bé en instanciar el model de dades, sempre abans de realitzar cap consulta. Per fer-ho, executem el codi
+
+  Class.forName(DRIVER);
+
+i capturem l'excepció ***ClassNotFoundException*** pel cas que no es trobi la classe del Driver.
+
+Per aconseguir una connexió amb la base de dades ([Connection](https://docs.oracle.com/en/java/javase/19/docs/api/java.sql/java/sql/Connection.html)) executem del mètode [***getConnection()***](https://docs.oracle.com/en/java/javase/19/docs/api/java.sql/java/sql/DriverManager.html#getConnection(java.lang.String,java.lang.String,java.lang.String)) del [***DriverManager***](https://docs.oracle.com/en/java/javase/19/docs/api/java.sql/java/sql/DriverManager.html), passant-li com a paràmetres la url de la base de dades, l'usuari i el password.
+
+
 ## Les classes del model de dades
 
 Són les classes que defineixen el tipus de dades (objectes) amb què treballa la nostra aplicació.
 
-S'acostuma a anomenar aquesta capa *business layer*.
+S'acostuma a anomenar aquesta capa *business layer* (capa de negoci).
 
 Definim una classe per a l'entitat *Category* i una altra per a l'entitat *Product*.
 
@@ -360,7 +370,7 @@ Aquestes classes implementen les funcionalitats del conegut **CRUD** (*Create*, 
 
 Cas que la relació entre les entitats fos mxn, al model relacional apareixeria també una taula pivot *categoriesproducts*, per a la qual caldria també definir una classe del model *CategoyProduct*. En el nostre cas, com que la relació és 1xn, només hi ha una columna addicional a la taula *products* per emmagatzemar la clau forana que relaciona amb la primària de la taula *categories*.
 
-Els mètodes ```T fromResultset(Resulset rs) throws SQLException``` són mètodes de conveniència per llegir els camps obtinguts a una fila del Resulset (després d'haver executat una consulta de dades) i crear amb ells un objecte de tipus T (Category o Product, segons el cas) que contingui la informació.
+Els mètodes ```T fromResultset(Resulset rs) throws SQLException``` són mètodes de conveniència per llegir els camps obtinguts a una fila del *Resulset* (després d'haver executat una consulta de dades) i crear amb ells un objecte de tipus T (Category o Product, segons el cas) que contingui la informació.
 
 ``` java
 package cat.proven.categprods.model.persist;
@@ -677,14 +687,14 @@ public class ProductDao {
 
 Les consultes poden ser bàsicament de dos tipus:
 
-* consultes que retornen dades: s'executen amb *executeQuery()* i retornen un *ResultSet*.
-* consultes que realitzen canvis a la base de dades: s'executen amb *executeUpdate()* i retornen el nombre de registres afectats per les modificacions
+* consultes que retornen dades: s'executen amb ***executeQuery()*** i retornen un *ResultSet*.
+* consultes que realitzen canvis a la base de dades: s'executen amb ***executeUpdate()*** i retornen el nombre de registres afectats per les modificacions.
 
 Per a encapsular les consultes utilitzem la classe [***Statement***](https://docs.oracle.com/en/java/javase/20/docs/api/java.sql/java/sql/class-use/Statement.html).
 
-Un *Statement* es crea amb el mètode *createStatement()* de la classe [**Connection**](https://docs.oracle.com/en/java/javase/20/docs/api/java.sql/java/sql/Connection.html).
+Un *Statement* es crea amb el mètode ***createStatement()*** de la classe [**Connection**](https://docs.oracle.com/en/java/javase/20/docs/api/java.sql/java/sql/Connection.html).
 
-Per a consultes que admeten paràmetres variables (select ... where, etc) utilitzem [***PreparedStatement***](https://docs.oracle.com/en/java/javase/20/docs/api/java.sql/java/sql/PreparedStatement.html). Els paràmetres es defineixen a la consulta amb el símbol '*?*' i se'ls assigna valors amb mètodes *setXXX* del *PreparedStatement* (hi ha mètodes setXXX diferents segons els tipus de dades a assignar). Els PreparedStatement es creen amb el mètode *prepareStatement(String sql)* de *Connection*.
+Per a consultes que admeten paràmetres variables (select ... where, insert, update, delete, etc) utilitzem [***PreparedStatement***](https://docs.oracle.com/en/java/javase/20/docs/api/java.sql/java/sql/PreparedStatement.html). Els paràmetres es defineixen a la consulta amb el símbol '*?*' i se'ls assigna valors amb mètodes *setXXX* del *PreparedStatement* (hi ha mètodes *setXXX* diferents segons els tipus de dades a assignar). Els *PreparedStatement* es creen amb el mètode ***prepareStatement(String sql)*** de *Connection*.
 
 Les consultes de selecció de dades retornen un [***ResulSet***](https://docs.oracle.com/en/java/javase/20/docs/api/java.sql/java/sql/ResultSet.html), el qual és un cursor amb mètodes per recórrer els resultats de la consulta i per llegir-ne els valors i les seves propietats.
 
@@ -867,9 +877,9 @@ Aquesta classe contindrà el bucle principal de control, el qual mostrarà el me
 
 Les respostes a l'usuari s'encarreguen a mètodes de vista que presentaran els missatges i els resultats de les accions.
 
-La comunicació de la classe d'interfície amb l'usuari (UI) amb model de dades de l'aplicació es pot aconseguir de diverses maneres:
+La comunicació de la classe d'interfície amb l'usuari (*UI*) amb model de dades de l'aplicació es pot aconseguir de diverses maneres:
 
-* Instanciar el model al constructor de la UI
+* Instanciar el model al constructor de la *UI*
 ```java
 public class CategProdUI {
     private final StoreModel model;
@@ -879,7 +889,7 @@ public class CategProdUI {
     ...
 }
 ```
-* Instanciant el model al principal (main()) i passant-ne la referència a la UI com a paràmetre del seu constructor
+* Instanciant el model al principal (*main()*) i passant-ne la referència a la *UI* com a paràmetre del seu constructor
 ```java
 public class CategProdUI {
     private final StoreModel model;
@@ -1215,7 +1225,7 @@ Cas de no utilitzar genèrics, el mètode *void displaySingle(T t)*  seria subst
 
 Una opció interessant per al tractament de les excepcions d'accés a dades és no capturar-les als DAO i deixar que sigui la capa de control la que les capturi, decideixi el tractament que és convenient i prepari la informació per a l'usuari.
 
-En aquest cas, caldrà modificar els mètodes de les classes DAO, suprimint els catch de [SQLException])https://docs.oracle.com/en/java/javase/19/docs/api/java.sql/java/sql/SQLException.html() i afegint-los la declaració de pas de l'excepció. Per exemple, per al mètode insert(), quedaria així:
+En aquest cas, caldrà modificar els mètodes de les classes DAO, suprimint els catch de [SQLException])(https://docs.oracle.com/en/java/javase/19/docs/api/java.sql/java/sql/SQLException.html) i afegint-los la declaració de pas de l'excepció. Per exemple, per al mètode insert(), quedaria així:
 
 ```java
     public int insert(Category category) throws SQLException {
