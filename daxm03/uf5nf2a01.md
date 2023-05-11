@@ -434,7 +434,7 @@ Per realitzar els càlculs necessitarem, doncs, instanciar un objecte de la clas
 
 #### Accions de la finestra principal
 
-Per tractar les accions de l'usuari amb la finestra principal, assignem un *ActionListener* per a les accions de cada MenuItem i un *WindowListener* per al botó de tancament de la finestra.
+Per tractar les accions de l'usuari amb la finestra principal, assignem un *ActionListener* per a les accions de cada *MenuItem* i un *WindowListener* per al botó de tancament de la finestra.
 
 Per respondre al botó de tancament de la finestra, creem un *WindowListener* independent, del qual cal definir el mètode *windowClosing()*. 
 
