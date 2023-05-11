@@ -171,6 +171,97 @@ public class BorderLayoutExample {
 }
 ```
 
+### Exemple captura clic en botons
+
+A l'exemple següent es defineix un panell amb un camp de text i dos botons. 
+
+En clicar cada botó, s'actualiza el contingut del camp de text amb un text diferent per a cada botó.
+
+Cada botó té associat un ActionListener (amb el método *JButton.addActionListener()*), el qual dóna resposta a l'acció a través del seu mètode *actionPerformed(ActionEvent evt)*.
+
+L'objecte [***ActionEvent***](https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/event/ActionEvent.html) que rep com a paràmetre conté mètodes per identificar el component sobre el que s'ha executat l'acció:
+
+  * **getSource()**: retorna l'objecte sobre el que s'ha actuat
+  * **getActionCommand()**: retorna un String identificatiu de l'acció associada (aquest valor s'especifica amb el mètode *setActionCommand()* de l'objecte, en aquest cas, del botó)
+
+A l'exemple, el botó és identificat amb el mètode *getSource()*, i usant el seu nom.
+
+```java
+/**
+* TextBotonsAp.java
+* Exemple de finestra amb dos botons i text
+* @author Jose Moreno
+* @version
+*/
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+class PanellBotoText extends JPanel
+{
+	private JTextField text;
+	
+	public PanellBotoText()
+	{
+		//crear observador d'esdeveniments.
+		ActionListener al = new ActionListener() {
+			public void actionPerformed( ActionEvent evt ) {
+				String nomBoto = ( (JButton)evt.getSource()).getText();
+				text.setText( "Premut "+nomBoto );
+			}
+		};
+		//instanciar camp de text.
+		text = new JTextField( 20 );
+		//definir text alternatiu del camp de text
+		text.setToolTipText( "Camp de text" );
+		//afegir camp de text al panell
+		add( text );
+		//crear boto1.
+		JButton boto1 = new JButton( "Botó 1" );
+		//afegir observador a boto1
+		boto1.addActionListener( al );
+		//definir text alternatiu boto1
+		boto1.setToolTipText( "Botó 1" );
+		//afegir boto1 al panell
+		add( boto1 );
+		//crear boto2.
+		JButton boto2 = new JButton( "Botó 2" );
+		//afegir observador a boto2
+		boto2.addActionListener( al );
+		//definir text alternatiu boto2
+		boto2.setToolTipText( "Botó 2" );
+		//afegir boto2 al panell
+		add( boto2 );
+	}
+}
+// classe principal
+public class TextBotonsAp
+{
+	public static void initGui() {
+		JFrame finestra = new JFrame( "Finestra amb dos botons i text" );
+		// afegir observador tancament finestra
+		finestra.addWindowListener( new WindowAdapter() {
+			public void windowClosing( WindowEvent evt ){
+				System.exit( 0 );
+			}
+		} );
+		//afegir panell contenidor dels botons i camp de text
+		finestra.getContentPane().add( new PanellBotoText(), BorderLayout.CENTER );
+		//definir dimensions finestra
+		finestra.setSize( 300,100 );
+		//fer visible la finestra
+		finestra.setVisible( true );
+	}
+	
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                initGui();
+            }
+        });
+    }
+}
+```
+
 ### Exemple aplicació càlcul índex de massa corporal
 
 Exemple de desenvolupament d'una aplicació amb interfície gràfica d'usuari (*GUI*) amb un menú i un únic panell, el qual conté un formulari de càlcul de l'índex de massa corporal d'una persona, donats l'altura (en m) i el pes (en kg).
