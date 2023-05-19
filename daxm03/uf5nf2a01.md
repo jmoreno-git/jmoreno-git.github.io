@@ -634,3 +634,5 @@ private void doCalculate() {
 
 }
 ```
+
+[Exemple BMI. Descàrrega del codi complet.](assets/5.2/damm03uf5nf2-bmi.zip)
