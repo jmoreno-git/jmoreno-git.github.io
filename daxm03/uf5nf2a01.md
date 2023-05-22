@@ -636,3 +636,9 @@ private void doCalculate() {
 ```
 
 [Exemple BMI. Descàrrega del codi complet.](assets/5.2/damm03uf5nf2-bmi.zip)
+
+## GUi i accés a dades
+
+El següent exemple il·lustra com fer una interfície gràfica d'usuari per substituir una de text que permeti mostrar dades obtingudes de consultes a una base de dades. Si el codi està ben construït, seguint els patrons explicats fins ara, no caldrà modificar el codi de la capa de negoci de l'aplicació (model i capa de persistència).
+
+[Store amb GUI: categories, productes i proveïdors](assets/5.2/damm03uf5nf2-categprodgui.zip)
