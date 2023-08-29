@@ -1,0 +1,15 @@
+<?xml encoding="UTF-8"?>
+<!ELEMENT persons (person*)>
+<!ELEMENT person (firstname, surname, age, phone*, address*)>
+<!ATTLIST person nif CDATA #REQUIRED>
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT surname (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT address (city, road, number, floor, door)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT road (#PCDATA)>
+<!ATTLIST road type (street | avenue | square) #REQUIRED>
+<!ELEMENT number (#PCDATA)>
+<!ELEMENT floor (#PCDATA)>
+<!ELEMENT door (#PCDATA)>

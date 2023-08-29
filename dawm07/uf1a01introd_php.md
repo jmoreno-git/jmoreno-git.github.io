@@ -9,7 +9,12 @@ adecuat per al desenvolupament web i que pot ser incrustat en HTML.
 
 [Presentacions PHP (PUE)](uf1_php_presentacions.md)
 
-El codi php es pot incrustrar enmig del codi html tancant-lo entre les etiquetes \<code php\> \<?php \[aqui el programa PHP\] ?\> \</code\>
+El codi php es pot incrustrar enmig del codi html tancant-lo entre les etiquetes 
+``` php
+<?php 
+[aqui el programa PHP\]
+ ?\>
+ ```
 
 El fitxer que el conté ha de tenir extensió php. Quan un fitxer només conté codi php, és una bona pràctica no posar l'etiqueta de tancament.
 

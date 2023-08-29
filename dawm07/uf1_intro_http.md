@@ -21,15 +21,15 @@ Prerequisits de client: xhtml, html5, css.
 
 ## Hypertext Transfer Protocol (HTTP) 
 
-    * HTTP is an application layer protocol runs over TCP/IP. 
-    * The IP provides support for routing and addressing (via an unique IP address for machines connected to the Internet); 
-    * while TCP supports multiplexing via 64K ports from port number 0 to 65535. The default port number assigned to HTTP is TCP port 80. (Notes: TCP Port numbers below 1024 are reserved for popular protocols such as HTTP, FTP, SMTP; Port numbers 1024 and above could be used for applications.)
-    * HTTP is an asynchronous request-response application-layer protocol. A client sends a request message to the server. The server then returns a response message to the client. In other words, HTTP is a pull protocol, a client pulls a page from the server (instead of server pushes pages to the clients).
-    * The syntax of the message is defined for HTTP1.1 in the RFC7230-RFC7235 (2014), by IETF and W3C (before RFC2068 -1997, RFC2616-1999):
+* HTTP is an application layer protocol runs over TCP/IP. 
+* The IP provides support for routing and addressing (via an unique IP address for machines connected to the Internet); 
+* while TCP supports multiplexing via 64K ports from port number 0 to 65535. The default port number assigned to HTTP is TCP port 80. (Notes: TCP Port numbers below 1024 are reserved for popular protocols such as HTTP, FTP, SMTP; Port numbers 1024 and above could be used for applications.)
+* HTTP is an asynchronous request-response application-layer protocol. A client sends a request message to the server. The server then returns a response message to the client. In other words, HTTP is a pull protocol, a client pulls a page from the server (instead of server pushes pages to the clients).
+* The syntax of the message is defined for HTTP1.1 in the RFC7230-RFC7235 (2014), by IETF and W3C (before RFC2068 -1997, RFC2616-1999):
 
 [Hypertext Transfer Protocol](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
 
-|[](assets/0.1/http_requestresponsemessages.png)
+![](assets/0.1/http_requestresponsemessages.png)
 
 * HTTP/2 - almost same protocol but binary coded. Only could be used over HTTPS (TLS 1.2)
 

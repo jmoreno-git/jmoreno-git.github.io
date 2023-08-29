@@ -6,7 +6,7 @@ Els tipus d'emmagatzematge de dades pot ser:
 * Automàtic
 * Dinàmic
 
-L'**emmagatazematge estàtic** es produeix a l'inici de l'execució del programa. El temps de vida de les dades estàtiques s'extén al llarg de tota l'execució del programa.
+L'**emmagatazematge estàtic** es produeix a l'inici de l'execució del programa. El temps de vida de les dades estàtiques s'estén al llarg de tota l'execució del programa.
 
 L'**emmagatzematge automàtic** el fa el compilador a mesura que gestiona la pila d'invocacions als diferents mètodes del programa. Cada vegada que s'entra en un mètode, es copien a la pila (*stack*) els arguments o paràmetres de la invocació i a continuació es fa el mateix amb les variables locals del mètode. Quan se surt del mètode (retorn), es restaura la pila al mateix estat que tenia abans de la invocació i les variables creades es fan inaccessibles.
 
@@ -16,6 +16,6 @@ L'**emmagatzematge dinàmic** es produeix d'acord amb les instruccions del progr
 
 ![java_references_explained](assets/1.2/java_references_explained.png)
 
-L'*stack* i el *heap* compareixen un mateix segment de memòria. Mentre que l'stack creix cap avall (adreces de memòria més baixes), el heap ho fa cap amunt (adreces de memòria més altes).
+L'*stack* i el *heap* compareixen un mateix segment de memòria. Mentre que l'stack creix cap avall (cap a adreces de memòria més baixes), el heap ho fa cap amunt (cap a adreces de memòria més altes).
 
 ![memory_stack](assets/1.2/memory_stack.png)

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE persons SYSTEM "Person.dtd">
+<persons>
+    <person nif="12345678Z">
+        <firstname>John</firstname>
+        <surname>Smith</surname>
+        <age>23</age>
+        <phone>955555555</phone>
+        <phone>699669966</phone>
+        <address>
+            <city>Barcelona</city>
+            <road type="street">Mallorca</road>
+            <number>44</number>
+            <floor>3</floor>
+            <door>1</door>
+        </address>
+    </person>
+</persons>
