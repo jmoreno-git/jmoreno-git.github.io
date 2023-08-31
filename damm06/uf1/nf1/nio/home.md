@@ -85,7 +85,7 @@ El funcionament dels ***channels*** és similar al dels *streams*, però amb pet
 * Es pot llegir i escriure asíncronament a un **Channel**.
 * Els **Channels** sempre llegeixen d'un **Buffer** i escriuen a un **Buffer**.
 
-|[](/damm06/assets/1.1/1.1.nio/javaniobufferchannel.png)
+![](/damm06/assets/1.1/1.1.nio/javaniobufferchannel.png)
 
 **FileChannel** és el canal que llegeix dades i escriu dades a fitxers.
 
