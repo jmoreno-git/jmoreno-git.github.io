@@ -180,7 +180,7 @@ Un altre sistema per representar un algorisme és el [pseudocodi](https://ca.wik
 
 ## Característiques del llenguatge Java
 
-El llenguatge Java va ser creat l'any 1009 per l'empresa Sun Microsystems, la qual va ser comprada l'any 2009 per Oracle.
+El [llenguatge Java](https://es.wikipedia.org/wiki/Java_(lenguaje_de_programaci%C3%B3n)) va ser creat l'any 1995 per l'empresa Sun Microsystems, la qual va ser comprada l'any 2009 per Oracle.
 
 És un llenguatge compilat, d'alt nivell i amb sintaxi estricta. El compilador genera un codi intermig (bytecodes) que s'executa posteriorment sobre una entorn d'execució (màquina virtual). Aixó permet que sigui multiplataforma, ja que el codi compilat és el mateix per a totes les plataformes. Només cal tenir instal·lat l'entorn virtual (JRE: Java Runtime Environment) corresponent a la plataforma concreta.
 
