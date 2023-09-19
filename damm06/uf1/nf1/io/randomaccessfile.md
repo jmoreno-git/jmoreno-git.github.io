@@ -6,7 +6,7 @@ La classe [**RandomAccessFile**](https://docs.oracle.com/en/java/javase/19/docs/
 
 Aquesta classe ens permet realitzar accessos a una posició determinada del fitxer (accés relatiu/accés aleatori o accés directe) a diferència de l’accés seqüencial que ens proveeixen **FileInputStream** i **FileOutputStream**. 
 
-![](/damm06/assets/1.1/1.1.io/random_access_file_example_in_java.png)
+![random_access_file_example_in_java.png](/damm06/assets/1.1/1.1.io/random_access_file_example_in_java.png)
 
 Aquesta classe ens permet escriure i llegir bytes i tipus de dades primitives. 
 

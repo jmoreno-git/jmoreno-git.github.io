@@ -8,3 +8,5 @@
 * [Seriació de tipus primitius](dataiostream.md)
 * [Fitxers de línies](linefiles.md)
 * [Seriació d'objectes](objectiostream.md)
+* [Random access files](randomaccessfile.md)
+* [Filter streams](filterstream.md)
