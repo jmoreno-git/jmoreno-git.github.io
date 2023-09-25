@@ -16,16 +16,16 @@ Tot i haver-hi moltes semblances, els JavaBeans no s'han de confondre amb els En
 
 Per funcionar com un JavaBean, una classe ha d'obeir certes especificacions sobre nomenclatura de mètodes, construcció i comportamen, les quals permeten tenir eines que puguin utilitzar, reutilitzar, substituir i connectar JavaBeans:
 
-  * Ha de tenir un constructor sense arguments.
-  * Els seus atributs de classe han de ser privats.
-  * Les seves propietats han de ser accessibles mitjançant mètodes get i set que segueixen una convenció de nomenclatura estàndard.
-  * Ha de ser serialitzable.
+* Ha de tenir un constructor sense arguments.
+* Els seus atributs de classe han de ser privats.
+* Les seves propietats han de ser accessibles mitjançant mètodes get i set que segueixen una convenció de nomenclatura estàndard.
+* Ha de ser serialitzable.
 
 L'estructura d'un JavaBean ha d'incloure:
 
-  * Propietats: Els atributs que conté.
-  * Mètodes: S'estableixen els mètodes get i set per accedir de lectura i escriptura respectivament sobre els atributs.
-  * Esdeveniments: Permeten la comunicació amb altres JavaBeans.
+* Propietats: Els atributs que conté.
+* Mètodes: S'estableixen els mètodes get i set per accedir de lectura i escriptura respectivament sobre els atributs.
+* Esdeveniments: Permeten la comunicació amb altres JavaBeans.
 
 [JavaBeans API documentation](https://docs.oracle.com/javase/8/docs/technotes/guides/beans/reference.html)
 
@@ -176,7 +176,6 @@ public class ProductBeanDemo {
 
 Codi complet de l'exemple: [beans_for_category_and_product.zip](/damm06/assets/4.1/beans_for_category_and_product.zip)
 
-
 ## Persistència de JavaBeans en XML
 
 A continuació teniu un exemple d'un JavaBean senzill i del procediment per fer-lo persistent en format xml.
@@ -324,16 +323,14 @@ import java.io.*;
 import java.beans.*;
 
 public class XmlPersistence {
-	
-	public static void main (String args[]) {
-		
+
+ public static void main (String args[]) {
 		// instantiate an object.
 		Object object1 = new Person("12345678Z", "Peter", 20);
 		// show the object an its type.
 		System.out.println("Initial->"+object1.toString());
 		System.out.println("Initial->Class:"+object1.getClass().getName());
 		try {
-			
 			// persist object to xml file
 			XMLEncoder encoder = new XMLEncoder(
 			   new BufferedOutputStream(
@@ -670,7 +667,6 @@ public class ProductVetoExample {
 
 Codi complet de l'exemple: [javabeansevents.zip](/damm06/assets/4.1/javabeansevents.zip)
 
-
 ## Altres exemples
 
 ### Sincronització de components gràfics amb el seu model de dades
@@ -690,5 +686,3 @@ Seguiu pas a pas aquest tutorial de com crear un bean gràfic i interactuar amb 
 ### Llista amb punt d'interès com a JavaBean
 
 [Llista amb punt d'interès](/damm06/assets/4.1/scrollablelist.zip)
-
-

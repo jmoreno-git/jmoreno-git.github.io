@@ -2,27 +2,26 @@
 
 ## Apunts i materials
 
-  * [DAM2-M06-UF3 Guia d'aprenentatge](/damm06/assets/3.1/dam2-m06-uf3_guiaaprenentatge.pdf)
-  * [Apunts de XML i BD (Univ. de Oviedo)](/damm06/assets/3.1/xml_y_bd-univ_oviedo.pdf)
-  * [IOC. Apunts de Llenguatges de marques. Àmbits d'aplicació](/damm06/assets/3.1/ioc-ambits_aplicacio_xml.pdf)
-  * [Use XQuery from a Java environment](/damm06/assets/3.1/xquery_and_java.pdf)
+* [DAM2-M06-UF3 Guia d'aprenentatge](/damm06/assets/3.1/dam2-m06-uf3_guiaaprenentatge.pdf)
+* [Apunts de XML i BD (Univ. de Oviedo)](/damm06/assets/3.1/xml_y_bd-univ_oviedo.pdf)
+* [IOC. Apunts de Llenguatges de marques. Àmbits d'aplicació](/damm06/assets/3.1/ioc-ambits_aplicacio_xml.pdf)
+* [Use XQuery from a Java environment](/damm06/assets/3.1/xquery_and_java.pdf)
 
 **Sistema gestor de base de dades XML**
 
-  * [eXist database](http://exist-db.org)
+* [eXist database](http://exist-db.org)
 
 **Java API XMLDB**
 
-  * [Writing Java applications with XMLDB API](/damm06/assets/3.1/exist-writing_java_applications_with_xmldb-api.pdf)
-  * [XML:DB API](https://github.com/xmldb-org/xmldb-api)
+* [Writing Java applications with XMLDB API](/damm06/assets/3.1/exist-writing_java_applications_with_xmldb-api.pdf)
+* [XML:DB API](https://github.com/xmldb-org/xmldb-api)
 
 **Java API XQJ**
 
-  * [XQJ: XQuery API for Java](http://xqj.net)
-  * [XQJ tutorial](/damm06/assets/3.1/xqj-tutorial.pdf)
+* [XQJ: XQuery API for Java](http://xqj.net)
+* [XQJ tutorial](/damm06/assets/3.1/xqj-tutorial.pdf)
 
 [Biblioteques XQJ a importar per programar amb Java i eXistdB](https://github.com/xmldb-org/xmldb-api)
-
 
 ## Exemples
 
@@ -38,8 +37,9 @@ data(doc('dam2/cdcatalog.xml')/catalog/cd/title)
 ```
 
 **Consulta XQuery**
-```xml
 
+```xml
+ç
 for $x in doc('dam2/cdcatalog.xml')/catalog/cd 
 where $x/year > 1990 
 order by $x/title 
@@ -84,7 +84,6 @@ return update replace $e/price with <price>9.91</price>
 ### Exemple codi Java
 
 [Exemple d'ús de l'API XQJ amb eXistDb](/damm06/assets/3.1/xqjexistexample.zip)
-
 
 #### Interface XQResultItem
 

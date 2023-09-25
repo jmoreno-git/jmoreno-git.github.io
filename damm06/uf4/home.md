@@ -8,11 +8,11 @@ La capacitat de ser reutilitzat (***reusability***), és una característica imp
 
 Per tal de garantir la reusabilitat, el component ha d'estar:
 
-  * Completament documentat.
-  * Provat intensivament:
-  * Ha de ser robust, comprovant la validesa de les entrades.
-  * Ha de ser capaç de passar missatges d'error apropiats.
-  * Dissenyat pensant que serà usat de maneres imprevistes.
+* Completament documentat.
+* Provat intensivament:
+* Ha de ser robust, comprovant la validesa de les entrades.
+* Ha de ser capaç de passar missatges d'error apropiats.
+* Dissenyat pensant que serà usat de maneres imprevistes.
 
 [Component based software engineering](https://en.wikipedia.org/wiki/Component-based_software_engineering)
 
