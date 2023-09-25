@@ -12,4 +12,6 @@
 
 [Preparació de l'entorn de treball](entorn_treball.md)
 
+[Generalitats: Java, patrons, etc.](uf0-commons/index.md)
+
 |![](assets/0.1/documentation.jpg) | ![](assets/0.1/documentation2.jpg) |
