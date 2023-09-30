@@ -23,3 +23,5 @@ A continuació hi ha diferents versions d'un mateix programa que realitza conver
 Exemple d'aplicació GUI amb menú formulari i taula de productes. [guiproduct.zip](/damm06/assets/0.1/gui/guiproduct.zip)
 
 [Uso de Combobox](https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html)
+
+Editor de text amb GUI: obrir i desar fitxer de text amb JFileChooser. [TextEditor.zip](/damm06/assets/0.1/gui/TextEditor.zip)
