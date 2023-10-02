@@ -2,4 +2,4 @@
 
 * [Generalitats de Java](llengjava.md/index.md)
 * [Patrons de disseny](patterns/index.md)
-* [Interfícies gràfiques d'usuari](gui/index.d)
+* [Interfícies gràfiques d'usuari](gui/index.md)
