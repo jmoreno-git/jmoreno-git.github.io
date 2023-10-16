@@ -8,8 +8,8 @@ Els ordinadors estan especialment dissenyats per a les aplicacions en les quals 
 
 Els bucles es poden classificar en funció de la condició de sortida del mateix de dues maneres:
 
-  - Bucles condicionals.
-  - Bucles comptats.
+- Bucles condicionals.
+- Bucles comptats.
 
 ## Bucles condicionals
 
@@ -17,8 +17,8 @@ El bloc de codi a repetir s'executa mentres que se satisfà una certa condició.
 
 A cada iteració (repetició) s'avalua novament la condició. En funció del moment en què s'avalua la condició de manteniment del bucle es classifiquen en:
 
-  - Bucles condicionals provats a l'inici
-  - Bucles condicionals provals al final
+- Bucles condicionals provats a l'inici
+- Bucles condicionals provals al final
 
 ### Bucle condicional provat a l'inici (while)
 
@@ -60,6 +60,7 @@ for (inicialitzacio; condicio; actualitzacio) {
   //si no es compleix la primera vegada, aquest bloc no s'executa mai
 }
 ```
+
 La inicialització s'executa només la primera vegada, en entrar al bucle.
 
 La condició s'avalua i es comprova cada vegada que s'itera.
@@ -145,5 +146,40 @@ public class Print20Enters {
             comptador++;
         } while (comptador <= LIMIT);
     }
+}
+```
+
+## Generació de nombres aleatoris
+
+Introduim aquí la generació de nombres aleatoris, ja que és necessària per al desenvolupament de molts jocs, els quals impliquen que la interacció amb l'usuari sigui iterativa.
+
+Per generar nombres aleatoris podem utilitzar el mètode [Math.random()](https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Math.html#random()), el qual retorna un nombre pseudoaleatori real de l'interval [0, 1). Si cal canviar l'interval, s'ha de reescalar el resultat, tal com es fa a l'exemple.
+
+Alternativament, podem usar els mètodes de la classe [Random](https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Random.html).
+
+```java
+import java.util.Random;
+
+/**
+ * Random generation example
+ * @author Jose
+ */
+public class RandomNumbers {
+
+    public static void main(String[] args) {
+        //generate a floating point random number using Math.random()
+        double r1 = Math.random();
+        System.out.println("Random float number in [0, 1) using Math.random(): " + r1);
+        //generate an integer random number in interval [MIN, MAX) using Math.random()
+        final int MIN = 100;
+        final int MAX = 200;
+        int r2 = (int) (MIN + (MAX-MIN) * Math.random());
+        System.out.format("Random integer number in [%d, %d) using Math.random(): %d\n", MIN, MAX, r2);
+        //generate an integer random number in interval [MIN, MAX) using class Random
+        Random rnd = new Random();
+        int r3 = rnd.nextInt(MIN, MAX);
+        System.out.format("Random integer number in [%d, %d) using Random.nextInt(): %d\n", MIN, MAX, r3);
+    }
+    
 }
 ```
