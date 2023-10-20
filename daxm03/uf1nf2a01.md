@@ -65,7 +65,8 @@ System.out.println(frase.toLowerCase());
 ```
 
 La sortida del codi anterior és:
-```
+
+```text
 Hola Lluis
 La longitud del missatge és 10
 Quin índex? 3
@@ -85,6 +86,44 @@ En un lugar d3 la Mancha d3 cuyo nombr3 no qui3ro acordarm3
 n lugar de la Ma
 EN UN LUGAR DE LA MANCHA DE CUYO NOMBRE NO QUIERO ACORDARME
 en un lugar de la mancha de cuyo nombre no quiero acordarme
+```
+
+### Lectura de string amb espais i lectura de línies amb Scanner
+
+Quan cal llegir amb la classe [Scanner](https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Scanner.html) una línia sencera en un String amb independència de si conté espais i altres separadors equivalents a l'espai (tabuladors, canvis de línia, etc.) es pot utilitzar el mètode ***Scanner.nextLine()***.
+
+Si es vol separar una entrada d'una línia en diverses lectures, fins i tot amb tipus de dada diferents, cal canviar el delimitador per defecte que fa servir Scanner. Per fer-ho, utilitzem el mètode ***Scanner.userDelimiter()***.
+
+```java
+Scanner useDelimiter(String pattern)
+Scanner useDelimiter(Pattern pattern)
+```
+
+Exemple:
+
+```java
+import java.util.Scanner;
+/**
+ * Read variables in a line with terminador '\n' and field separator ';'
+ * @author Jose
+ */
+public class ScannerCsv {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        //show default delimiter
+        System.out.println("Scanner default delimiter: "+sc.delimiter());
+        //newlines and semicolons with any amount of spaces around are allowed
+        sc.useDelimiter("(\\s*;\\s*)|\\n");
+        //read a name (String with spaces allowed) and an integer age
+        System.out.print("Input name and age: ");
+        String name = sc.next();   //read name
+        int age = sc.nextInt();   //read age
+        //show variables read
+        System.out.format("name: %s; age: %d\n", name, age);
+    }
+    
+}
 ```
 
 ### Conversió entre String i Number

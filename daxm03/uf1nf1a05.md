@@ -67,13 +67,57 @@ La condició s'avalua i es comprova cada vegada que s'itera.
 
 L'actualització s'executa cada vegada que s'itera al bucle, al igual que el bloc intern.
 
-## Enniuament de bucles
+## Niuament de bucles
 
 El codi de l'interior del bucle pot també contenir altres bucles, generant estructures per respondre a problemes complexos.
 
 [El algorisme de l'amistat - Sheldon Cooper (The Big Bang Theory)](https://www.youtube.com/watch?v=H3z3HDbl5QU)
 
 ## Exemples
+
+```java
+/**
+ * Exemple de bucles for niats
+ * Il·lustra les iteracions que es produeixen als bucles (extern i intern)
+ * @author Jose
+ */
+public class BuclesForNiats {
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 3; i++) {
+            System.out.format("Bucle extern i=%d%n", i);
+            for (int j = 0; j < 5; j++) {
+                System.out.format("\tBucle intern i=%d, j=%d%n", i, j);
+            }
+        }
+    }
+    
+}
+
+```
+
+La sortida del programa BuclesforNiats és la següent:
+
+```text
+Bucle extern i=0
+ Bucle intern i=0, j=0
+ Bucle intern i=0, j=1
+ Bucle intern i=0, j=2
+ Bucle intern i=0, j=3
+ Bucle intern i=0, j=4
+Bucle extern i=1
+ Bucle intern i=1, j=0
+ Bucle intern i=1, j=1
+ Bucle intern i=1, j=2
+ Bucle intern i=1, j=3
+ Bucle intern i=1, j=4
+Bucle extern i=2
+ Bucle intern i=2, j=0
+ Bucle intern i=2, j=1
+ Bucle intern i=2, j=2
+ Bucle intern i=2, j=3
+ Bucle intern i=2, j=4
+```
 
 ```java
 import java.util.InputMismatchException;
