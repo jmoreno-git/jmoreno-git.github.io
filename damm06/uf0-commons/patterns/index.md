@@ -10,7 +10,7 @@
 * **Patrons de comportament**: es relacionen específicament amb la comunicació entre objectes (Ex: Observer).
 * **Patrons de J2EE**: específicament relacionats amb la capa de presentació.
 
-[[https://en.wikipedia.org/wiki/Design_Patterns|Design Patterns]]
+[Design Patterns](https://en.wikipedia.org/wiki/Design_Patterns)
 
 ## Patrons d'arquitectura
 
@@ -20,7 +20,7 @@
 
 * [Patró Singleton](singleton.md)
 * [Patró Factory](factory.md)
-* [Patró Data Access Object](/damm06/uf2/nf1/dao.md)
+* [Patró Data Access Object](../../uf2/nf1/dao.md)
 * [Arquitectures Model-Vista-Controlador](mvc.md)
 
 ![](/damm06/assets/0.1/refactor_area51.jpg)

@@ -17,9 +17,9 @@
 
 ## Importància de l'ús de patrons
 
-[|Frank Sinatra - My Way](https://www.youtube.com/watch?t=51&v=yGwwkiWWqIk&feature=youtu.be)
+[Frank Sinatra - My Way](https://www.youtube.com/watch?t=51&v=yGwwkiWWqIk&feature=youtu.be)
 
-[|Patrons de disseny de programari](https://en.wikipedia.org/wiki/Software_design_pattern)
+[Patrons de disseny de programari](https://en.wikipedia.org/wiki/Software_design_pattern)
 
 * Estandardització
 * Ús de solucions solvents i provades.
@@ -33,9 +33,9 @@
 
 ## Arquitectures: comparació client-servidor i MVC
 
-[|Arquitectura client servidor](https://en.wikipedia.org/wiki/Client%E2%80%93server_model)
+[Arquitectura client servidor](https://en.wikipedia.org/wiki/Client%E2%80%93server_model)
 
-[|Arquitectura MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+[Arquitectura MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 
 ## Com implementarem MVC?
 
