@@ -317,6 +317,10 @@ public class ConversorMoneda {
 }
 ```
 
+## Exercici proposat: La ruleta
+
+[Enunciat](assets/2.1/ruleta-enunciat.odt). [Javadoc de la solució](assets/2.1/ruleta-javadoc.pdf)
+
 ## Exercici proposat: Joc de pedra, paper i tissora
 
 Implementar el [joc de pedra, paper i tissora](https://es.wikipedia.org/wiki/Piedra,_papel_o_tijera).
@@ -335,4 +339,4 @@ En iniciar-se el joc, l'usuari determina el nombre de tirades que cal guanyar pe
 
 Després s'inicia el bucle del joc, on l'ordinador fa la tirada escollint aleatòriament i pregunta la seva tirada a l'usuari. A continuació, es determina el resultat de la tirada i s'informa del resultat i dels marcadors.
 
-Aquí teniu el [javadoc de la proposta de solució](assets/1.2/PedraPaperTissores-Javadoc.pdf).
+Aquí teniu el [javadoc de la proposta de solució](assets/2.1/PedraPaperTissores-Javadoc.pdf).

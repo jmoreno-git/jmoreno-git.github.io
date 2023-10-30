@@ -7,13 +7,11 @@ Anem a il·lustrar l'*ORM* amb un exemple d'aplicació: un gestor de vols.
 
 ## Objectius
 
-  - Implementar l'arquitectura *MVC*.
-  - Implementar el patró *DAO* per a accés a dades.
-  - Aplicar el patró Singleton a la classe que encapsula les dades de 
-    connexió a la base de dades.
-  - Crear la base de dades definint correctament les relacions entre les
-    entitats i les restriccions d'integritat.
-  - Crear un joc de dades de prova adient.
+- Implementar l'arquitectura *MVC*.
+- Implementar el patró *DAO* per a accés a dades.
+- Aplicar el patró Singleton a la classe que encapsula les dades de connexió a la base de dades.
+- Crear la base de dades definint correctament les relacions entre les entitats i les restriccions d'integritat.
+- Crear un joc de dades de prova adient.
 
 ## Desenvolupament Flight manager: Enunciat
 
@@ -29,13 +27,13 @@ El que necessita gestionar aquesta empresa és el següent.
 
 Les funcionalitats que cal implementar son les següents:
 
-  - Alta, baixa i modificació de passatgers.
-  - Alta, baixa i modificació de vols.
-  - Registrar un passatger en un vol fins al màxim de capacitat.
-  - Eliminar un passatger d'un vol. Aquesta operació no es podrà fer efectiva si queda menys d'una hora per iniciar el vol.
-  - Llistar tots els vols.
-  - Llistar tots els passatgers.
-  - Llistar els passatgers d'un vol.
+- Alta, baixa i modificació de passatgers.
+- Alta, baixa i modificació de vols.
+- Registrar un passatger en un vol fins al màxim de capacitat.
+- Eliminar un passatger d'un vol. Aquesta operació no es podrà fer efectiva si queda menys d'una hora per iniciar el vol.
+- Llistar tots els vols.
+- Llistar tots els passatgers.
+- Llistar els passatgers d'un vol.
 
 Evidentment, cap passatger es pot registrar dos cops en un mateix vol.
 Cal mantenir la integritat referencial entre vols i passatgers.
