@@ -13,7 +13,7 @@ DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 Document doc = dBuilder.parse(new File("TestFile.xml"));  
 ```
 
-Un objecte *DOM* està estrcuturat en forma d'arbre on cada part de l’*XML* es representa en forma de **node**. Un document *XML* té diferents tipus de nodes. El node principal que representa tot l’*XML* sencer s’anomena **document**, i les diverses etiquetes, inclosa l’etiqueta arrel, es coneixen com a nodes **element**.
+Un objecte *DOM* està estructurat en forma d'arbre on cada part de l’*XML* es representa en forma de **node**. Un document *XML* té diferents tipus de nodes. El node principal que representa tot l’*XML* sencer s’anomena **document**, i les diverses etiquetes, inclosa l’etiqueta arrel, es coneixen com a nodes **element**.
 
 El contingut textual d’una etiqueta s’instancia com a node de tipus **text** i els atributs com a nodes de tipus **Attribute**.
 
@@ -56,6 +56,10 @@ Per obtenir un conjunt de nodes disposem de mètodes com **getChildNodes()* o **
 [Exemple lectura company staff per consola: CompanyStaffDomAp](/damm06/assets/1.2/companystaffdomap.zip)
 
 [Exemple lectura DOM immobiliària amb GUI: RealEstate](/damm06/assets/1.2/realestatedomgui.zip)
+
+## Introducció de l'arquitectura Model-Vista-Controlador
+
+[MVC](../../../uf0-commons/patterns/mvc.md)
 
 ## Exercicis
 

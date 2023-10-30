@@ -5,7 +5,7 @@
 * Prendre consciència de la importància de l'ús de patrons de disseny d'aplicacions per a la solució de problemes coneguts.
 * Valorar l'ús d'arquitectures sòlides per al disseny d'aplicacions per tal de facilitar-ne el manteniment i garantir-se l'escalabilitat.
 * Implementar l'arquitectura Model-Vista-Controlador en una aplicació senzilla amb un únic controlador.
-* 
+
 ## Seqüenciació
 
 * Els patrons i les arquitectures.
@@ -62,3 +62,5 @@ Comunicació amb el model:
 
 * El controlador(o els controladors si s'hi ha més d'un) envia peticions (executa metodes) del model i aquests retornen valors al controlador, el qual actualitza les vistes
 * El controlador envia les peticions al model i aquest no retorna dades, sinó que actualitza el seu estat, genera un esdeveniment de canvi d'estat i l'envia als observadors. Com a observadors del model poden estar les vistes o els controladors.
+
+Exemple senzil de l'arquitectura Model-Vista-Controlador (MVC). [mvc-simple_example.zip](/damm06/assets/0.1/mvc-simple_example.zip)
