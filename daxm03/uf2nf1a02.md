@@ -323,10 +323,12 @@ Implementar el [joc de pedra, paper i tissora](https://es.wikipedia.org/wiki/Pie
 
 Cal implementar el joc d'un jugador contra la màquina.
 
-Els  jugadors juguen simultàniament, es compara el resultat de les tirades i es decideix si hi ha empat o guanya un jugador. En aquest darrer cas s'incrementa el comptador del del jugador guanyador. 
+Els  jugadors juguen simultàniament, es compara el resultat de les tirades i es decideix si hi ha empat o guanya un jugador. En aquest darrer cas s'incrementa el comptador del jugador guanyador.
+
 A cada torn s'imprimeix el resultat dels comptadors dels jugadors.
-Se imprime el resultado del contador en cada turno. 
+
 Finalitza el joc quan un jugador guanya tres tirades (configurable) o quan s'arriba a un màxim de 6 tirades (configurable).
+
 En finalitzar el joc es mostra el marcador final amb les puntuacions de cada jugador i s'indica quin és el guanyador o si hi ha empat.
 
 En iniciar-se el joc, l'usuari determina el nombre de tirades que cal guanyar per acabar el joc i el nombre de tirades màximes abans de finalitzar.
