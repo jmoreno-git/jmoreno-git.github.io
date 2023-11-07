@@ -95,11 +95,13 @@ public class LambdaTester {
 }
 ```
 
-## Mètodes per defecte en interficies
+## Mètodes static i per defecte en interficies
 
 *A partir de java 8*
 
 Es poden definir mètodes per defecte en interfícies, de manera que les classes que implementen l'interfície hereten el mètode amb la seva implementació per defecte, tot i que poden redefinir-ne el comportament.
+
+També es poden definir mètodes static, els quals són heretats per les classes que implementen l'interface i no es poden redefinir. En canvi, són propietat de l'interface i es poden invocar amb el nom de l'interface en qualsevol context.
 
 ```java
 public interface CalculatorInterface {
@@ -108,6 +110,59 @@ public interface CalculatorInterface {
   }
   public int product(int x, int y);
 }
+```
+
+Exemple d'ús de mètodes static i default.
+
+```java
+/**
+ * Interface to test static and default methods
+ * @author ProvenSoft
+ */
+public interface DummyInterface {
+    int X = 9;
+    default String dMethod() {
+        return "idefault".concat(String.valueOf(X));
+    }
+    static String sMethod() {
+        return "istatic".concat(String.valueOf(X));
+    }
+}
+```
+
+```java
+public class DummyClass implements DummyInterface {
+    @Override
+    public String dMethod() {
+        return "cdefault".concat(String.valueOf(X));
+    }
+    public String sMethod() {
+        return "cstatic".concat(String.valueOf(X));
+    }
+}
+```
+
+```java
+public class DummyMain {
+    public static void main(String[] args) {
+       DummyClass dc = new DummyClass();
+       show(dc.dMethod());
+       show(dc.sMethod());
+       show(DummyInterface.sMethod());
+       show(DummyInterface.X);
+    }
+    private static <T> void show(T s) {
+        System.out.println(s);
+    }
+}
+```
+
+El resultat del codi anterior és:
+```text
+cdefault9
+cstatic9
+istatic9
+9
 ```
 
 ## Streams
