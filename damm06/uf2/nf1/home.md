@@ -16,13 +16,13 @@ El resultat d'una consulta de recuperació de dades és un objecte [**ResultSet*
 
 El *ResultSet* només existeix mentre existeix l'objecte *Statement* que l'ha generat, i aquest només mentre la *Connection* existeix i no s'ha tancat.
 
-  * [Accés a dades amb patró DAO](dao.md)
-  * [Transaccions]()
-  * [Entitats amb relació 1xn](relacio1xn.md)
-  * [Entitats amb relació mxn](relaciomxn.md)
+* [Accés a dades amb patró DAO](dao.md)
+* [Transaccions](transaccions.md)
+* [Entitats amb relació 1xn](relacio1xn.md)
+* [Entitats amb relació mxn](relaciomxn.md)
 
 ## Model desconnectat
 
 Proveeix classes que permeten emmagatzemar les dades obtingudes a la consulta un cop tancada la connexió amb la base de dades. També inclouen informació per realitzar automàticament novament la connexió a la base de dades per realitzar actualitzacions de les dades.
 
-  * [RowSet](rowset.md)
+* [RowSet](rowset.md)
