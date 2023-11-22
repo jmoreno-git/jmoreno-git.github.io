@@ -1,6 +1,6 @@
 # Tractament d'errors
 
-Ús de **logger** per enviar errors a un fitxer (veure més amunt).
+Ús de **logger** per enviar errors a un fitxer (veure [logger](logger.md)).
 
 Utilització de **enum** per a codificar errors:
 

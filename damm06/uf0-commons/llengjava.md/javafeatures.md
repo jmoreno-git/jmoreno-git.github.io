@@ -392,7 +392,7 @@ Per reduir el codi de les classes de dades, els registres defineixen automàtica
 Restriccions:
 
 * No poden extendre altres classes ni definir nous atributs que no siguin estàtics.
-* Són finals i no es poden extendre ni denifir-se com a abstractes.
+* Són finals i no es poden extendre ni definir-se com a abstractes.
 * Els atributs són finals (inmutables).
 
 ## instanceof sense cast

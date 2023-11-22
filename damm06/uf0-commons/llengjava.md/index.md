@@ -7,5 +7,6 @@
 * [Introspecció de classes (Reflection)](reflection.md)
 * [Logger](logger.md)
 * [Tractament d'errors](tractamerrors.md)
+* [Classes Optional](optional.md)
 * [Class tester](classtester.md)
 * [Internacionalització d'aplicacions](i18n.md)
