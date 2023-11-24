@@ -17,9 +17,10 @@ El resultat d'una consulta de recuperació de dades és un objecte [**ResultSet*
 El *ResultSet* només existeix mentre existeix l'objecte *Statement* que l'ha generat, i aquest només mentre la *Connection* existeix i no s'ha tancat.
 
 * [Accés a dades amb patró DAO](dao.md)
-* [Transaccions](transaccions.md)
 * [Entitats amb relació 1xn](relacio1xn.md)
 * [Entitats amb relació mxn](relaciomxn.md)
+* [Transaccions](transaccions.md)
+* Countries: exemple amb ResultSet senzill i amb ResultSet navegable i modificable [descàrrega](/damm06/assets/2.1/countries-db-example.zip)
 
 ## Model desconnectat
 
