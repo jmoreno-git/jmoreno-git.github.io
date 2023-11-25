@@ -20,7 +20,8 @@ El *ResultSet* només existeix mentre existeix l'objecte *Statement* que l'ha ge
 * [Entitats amb relació 1xn](relacio1xn.md)
 * [Entitats amb relació mxn](relaciomxn.md)
 * [Transaccions](transaccions.md)
-* Countries: exemple amb ResultSet senzill i amb ResultSet navegable i modificable [descàrrega](/damm06/assets/2.1/countries-db-example.zip)
+* DAO genèric amb *reflection* i transaccions [dao-generic.zip](/damm06/assets/2.1/dao-generic.zip)
+* Countries: exemple amb ResultSet senzill i amb ResultSet navegable i modificable [countries-db-example.zip](/damm06/assets/2.1/countries-db-example.zip)
 
 ## Model desconnectat
 
