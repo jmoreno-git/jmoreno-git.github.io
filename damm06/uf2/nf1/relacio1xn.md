@@ -1174,7 +1174,7 @@ public class CategProdUI {
 }
 ```
 
-[Descàrrega del codi](assets/6.1/categproduct.zip)
+[Descàrrega del codi](/damm06/assets/2.1/categproduct.zip)
 
 Exercici proposat: 
 
