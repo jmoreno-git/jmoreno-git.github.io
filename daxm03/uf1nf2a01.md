@@ -260,7 +260,7 @@ Consulteu el seu funcionament [aquí](https://es.wikipedia.org/wiki/Cifrado_C%C3
 
 Codifiqueu un programa que demani a l'usuari un missatge (String) i un desplaçament (enter), codifiqui el missatge, el mostri codificat, després el decodifiqui i el mostri decodificat.
 
-Haurà de contenir dos mètodes: un per codificar i un altre per decodificar.
+Els mètodes per codificar i decodificar estaran en una classe separada (sense mètode main): XifratCesar.java.
 
 ```java
 /**
@@ -288,7 +288,35 @@ public static String desxifrarCesar(String missatge, int desp) {
 }
 ```
 
-Solució: [Xifrat César](./assets/1.2/XifratCesar.java)
+La classe principal importarà la classe XifratCesar i usarà els seus mètodes per xifrar i desxifrar.
+
+```java
+public class XifratDeMissatges {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        sc.useDelimiter("\n");
+        System.out.print("Entra la frase a xifrar: ");
+        String textAXifrar = sc.next();
+        System.out.print("Entra el desplaçament: ");
+        int desplacament = sc.nextInt();
+        //
+        System.out.println("Text a xifrar: "+ textAXifrar);
+        //
+        String textXifrat = XifratCesar.xifrarCesar(textAXifrar, desplacament);
+        System.out.println("Text xifrat: "+ textXifrat);
+        //
+        String textDesxifrat = XifratCesar.desxifrarCesar(textXifrat, desplacament);
+        System.out.println("Text desxifrat: "+ textDesxifrat);
+        
+    }
+    
+}
+```
+
+Solució: 
+* [Xifrat César](./assets/1.2/XifratCesar.java)
+* [Xifrat de missatges (principal)](./assets/1.2/XifratDeMissatges.java)
 
 ## Dates i temps
 
