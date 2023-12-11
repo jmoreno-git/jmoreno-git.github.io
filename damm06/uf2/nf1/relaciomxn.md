@@ -306,7 +306,7 @@ public class MainMenu extends Menu {
 
 La classe *MainMenu* defineix el menú d'opcions de l'aplicació. Utilitza les classes auxiliars *Menu* i *Option*.
 
-Classes auxiliars *Menu* i *Option*. ![Classes auxiliars Menu i Option](/docencia/dam/m03/uf6/flightsmanager/menuoption.zip)
+Classes auxiliars *Menu* i *Option*. [Classes auxiliars Menu i Option](/docencia/dam/m03/uf6/flightsmanager/menuoption.zip)
 
 ## Base de dades
 
