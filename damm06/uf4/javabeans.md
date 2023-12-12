@@ -378,7 +378,7 @@ El fitxer generat és el següent:
 </java>
 ```
 
-Codi sencer de l'exemple: [XmlPersistence.rar](/damm06/assets/4.1/xmlpersistence.zip)
+Codi sencer de l'exemple: [xmlPersistence.zip](/damm06/assets/4.1/xmlpersistence.zip)
 
 ## Sincronització (binding) entre components
 
@@ -493,9 +493,9 @@ Codi complet de l'exemple: [beanbindingexample01.zip](/damm06/assets/4.1/beanbin
 
 A més de disparar esdeveniments de canvi de propietats, també es poden disparar esdeveniments de veto, els quals es disparen abans de produir-se el canvi i permeten prendre mesures de control abans de la modificació de la propietat.
 
-El mecanisme és semblant al del canvi. Cal crear i registrar al *bean* un [htmlVetoableChangeListener](https://docs.oracle.com/javase/8/docs/api/java/beans/VetoableChangeListener)., el cual tracta l'esdeveniment amb el seu mètode ***void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException*** . Normalment, en aquest mètode es realitzen les verificacions que siguin pertinents i, cas que es vulgui vetar el canvi en la propietat, es llança l'excepció ***PropertyVetoException***. La resposta final a aquest veto la farà el fragment de codi que capturi aquesta excepció.
+El mecanisme és semblant al del canvi. Cal crear i registrar al *bean* un [VetoableChangeListener](https://docs.oracle.com/javase/8/docs/api/java/beans/VetoableChangeListener), el cual tracta l'esdeveniment amb el seu mètode ***void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException*** . Normalment, en aquest mètode es realitzen les verificacions que siguin pertinents i, cas que es vulgui vetar el canvi en la propietat, es llança l'excepció ***PropertyVetoException***. La resposta final a aquest veto la farà el fragment de codi que capturi aquesta excepció.
 
-Per facilitar la gestió dels esdeveniments de veto disposem de la classe [VetoableChangeSupport](https://docs.oracle.com/javase/8/docs/api/java/beans/VetoableChangeSupport)., la qual informa els listeners a través del seu mètode **//fireVetoableChange//**.
+Per facilitar la gestió dels esdeveniments de veto disposem de la classe [VetoableChangeSupport](https://docs.oracle.com/javase/8/docs/api/java/beans/VetoableChangeSupport)., la qual informa els listeners a través del seu mètode **fireVetoableChange**.
 
 A continuació es mostra un bean per a encapsular un objecte Product amb les capacitat de comunicació d'esdeveniments de canvi i de veto.
 
@@ -667,7 +667,7 @@ public class ProductVetoExample {
 
 Codi complet de l'exemple: [javabeansevents.zip](/damm06/assets/4.1/javabeansevents.zip)
 
-## Altres exemples
+## Més exemples
 
 ### Sincronització de components gràfics amb el seu model de dades
 
@@ -681,8 +681,26 @@ Codi complet de l'exemple: [javabeansevents.zip](/damm06/assets/4.1/javabeanseve
 
 Seguiu pas a pas aquest tutorial de com crear un bean gràfic i interactuar amb ell.
 
-[FaceBean.zip](/damm06/assets/4.1/FaceBean.zip)), [FaceFrame.zip](/damm06/assets/4.1/FaceFrame.zip), [Biblioteca BeansBinding](/damm06/assets/4.1/jar_files.zip)
+[FaceBean.zip](/damm06/assets/4.1/FaceBean.zip), [FaceFrame.zip](/damm06/assets/4.1/FaceFrame.zip), [Biblioteca BeansBinding](/damm06/assets/4.1/jar_files.zip)
 
 ### Llista amb punt d'interès com a JavaBean
 
 [Llista amb punt d'interès](/damm06/assets/4.1/scrollablelist.zip)
+
+### GUI Master-Detail
+
+Exemple de component compost de dos panells:
+* llista de productes (es mostra el codi)
+* formulari de producte (es mostren totes les dades del producte seleccionat a la llista)
+
+[master-detail.zip](/damm06/assets/4.1/master-detail.zip)
+
+### Component Data-Browser
+
+Conté dos projectes, un amb el navegador de dades i un altre amb un exemple d'ús.
+
+Les dades del DataBrowser s'inicialitzen al constructor però es poden canviar i es mantenen sincronitzades. Serveix per a qualsevol tipus de dada. Utilitza *reflection*.
+
+Versió completa, no gràfica: [component-databrowser_example.zip](/damm06/assets/4.1/component-databrowser_example.zip)
+
+Versió simplificada, gràfica: [component-guidatabrowser_example.zip](/damm06/assets/4.1/component-guidatabrowser_example.zip)
