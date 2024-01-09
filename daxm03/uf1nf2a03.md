@@ -45,7 +45,7 @@ int [][] arr3x2 = new int[3][2];
 int [] arr1x2 = new int[2];
 arr1x2[0] = 1;
 arr1x2[1] = 2;
-arr2D[0][0] = arr1x2;
+arr3x2[0][0] = arr1x2;
 //el mateix amb les altres files (1 i 2)
 ```
 
@@ -53,7 +53,7 @@ o també
 ```java
 int [][] arr3x2 = new int[3][2];
 int [] arr1x2 = {1, 2};
-arr2D[0][0] = arr1x2;
+arr3x2[0][0] = arr1x2;
 //el mateix amb les altres files (1 i 2)
 ```
 
