@@ -1227,4 +1227,4 @@ public class StoreJPATester {
 
 [Exemple complet](/damm06/assets/2.2/storejpa.zip)
 
-[Exemple complet (versió senzilla)](/damm06/assets/2.2/storejpa-1.zip). Suposa BD relacional i que només es requereix la persistència en un dels extrems de la relació.
+[Exemple complet (versió senzilla)](/damm06/assets/2.2/storejpa-simple.zip). Suposa BD relacional i que només es requereix la persistència en un dels extrems de la relació.
