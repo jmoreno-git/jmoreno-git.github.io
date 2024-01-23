@@ -327,6 +327,202 @@ public class ReadChars {
 }
 ```
 
+### Fitxers amb format CSV
+
+Aquest exempñe il·lustra com convertir objectes a format text CSV i convertir en objectes des de format text CSV.
+
+**Person.java**
+```java
+/**
+ * Person.java
+ * TAD Person.
+ *
+ * @author Jose Moreno.
+ */
+
+public class Person {
+
+    /*======  attributes =======*/
+    private String nif;
+    private String name;
+    private String phone;
+
+    /*======  constructors =======*/
+    /**
+     * Person() Default constructor.
+     */
+    public Person() {
+
+    }
+
+    /**
+     * Person() Full initialitzer constructor.
+     * @param nif
+     * @param name
+     * @param phone
+     */
+    public Person(String nif, String name, String phone) {
+        this.nif = nif;
+        this.name = name;
+        this.phone = phone;
+    }
+
+    /**
+     * Person() Copy constructor.
+     * @param other
+     */
+    public Person(Person other) {
+        this.nif = other.nif;
+        this.name = other.name;
+        this.phone = other.phone;
+    }
+
+    /*======  accessors =======*/
+    public String getNif() {
+        return nif;
+    }
+
+    public void setNif(String nif) {
+        this.nif = nif;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /*======  methods =======*/
+    /**
+     * toString() Builds a String representation of the object.
+     *
+     * @return String representation.
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Person{");
+        sb.append("nif=").append(nif);
+        sb.append(", name=").append(name);
+        sb.append(", phone=").append(phone);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    /**
+     * equals() Compares two objects. Two Person objects are equal if their
+     * nif's are equal.
+     *
+     * @return true if the two objects are equal to each other, false otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        boolean b;
+        if (obj == null) {
+            b = false;
+        } else {
+            if (this == obj) {
+                b = true; //the same object.
+            } else {
+                if (obj instanceof Person other) { //the same class.
+                    //Person other = (Person) obj; //convert to Person.
+                    b = this.nif.equals(other.nif);
+                } else {
+                    b = false;
+                }
+            }
+        }
+        return b;
+    }
+
+}
+```
+
+**CsvHelper.java**
+```java
+/**
+ * CSVHelper.java
+ * Utility class to perform convertions between csv and objects.
+ *
+ * @author Jose Moreno.
+ */
+public class CsvHelper {
+
+    /**
+     * toCsv() Converts object to CSV.
+     *
+     * @param obj: object to be converted.
+     * @param delimiter: delimiter to be used between fields.
+     * @return String with object data in CSV format.
+     */
+    public static String toCsv(Person obj, String delimiter) {
+        return String.format("%s%s%s%s%s",
+                obj.getNif(), delimiter, obj.getName(), delimiter, obj.getPhone());
+    }
+
+    /**
+     * fromCsv() Converts CSV String to object.
+     *
+     * @param s: string to be converted.
+     * @param delimiter: delimiter to be used between fields.
+     * @return Person object with data contained in String s or null in case of error.
+     */
+    public static Person fromCsvPerson(String s, String delimiter) {
+        final int objNumFields = 3;  //number of attributes of Person.
+        Person p;
+        String[] tokens = s.split(delimiter);
+        if (tokens.length == objNumFields) {
+            String nif = tokens[0];
+            String name = tokens[1];
+            String phone = tokens[2];
+            p = new Person(nif, name, phone);
+        } else {
+            p = null;
+        }
+        return p;
+    }
+}
+```
+
+**PersonCsvMain.java**
+
+```java
+/**
+ * PersonTextFilePersistMain.java
+ * Exemple of conversion between objects and CSV string.
+ *
+ * @author Jose Moreno.
+ */
+
+public class PersonCsvMain {
+
+    public static void main(String args[]) {
+        final String myDelimiter = ";";  //delimiter used to separate fields.
+        //instantiate a new Person
+        Person p1 = new Person("000A", "Peter", "1111");
+        //convert to csv.
+        String csvFormat = CsvHelper.toCsv(p1, myDelimiter);
+        System.out.println(csvFormat);
+        //from a CSV string.
+        String csv = "001B;John;2222";
+        //convert to Person.
+        Person p2 = CsvHelper.fromCsvPerson(csv, myDelimiter);
+        System.out.println(p2.toString());
+    }
+
+}
+```
+
 ### Apertura de fitxers per afegir informació
 
 Totes les subclasses de *FileOutputStream* i *FileWriter* tenen constructors que permeten escollir si es vol obrir el fitxer en mode *append* per a afegir informació en comptes de sobreescriure-la.
