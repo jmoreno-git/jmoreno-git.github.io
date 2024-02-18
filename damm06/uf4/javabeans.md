@@ -695,6 +695,8 @@ Exemple de component compost de dos panells:
 
 [master-detail.zip](/damm06/assets/4.1/master-detail.zip)
 
+[School groups-students (GUI master-detail)](/damm06/assets/4.1/school-groupsstudents.zip)
+
 ### Component Data-Browser
 
 Conté dos projectes, un amb el navegador de dades i un altre amb un exemple d'ús.
