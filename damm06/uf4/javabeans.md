@@ -693,9 +693,9 @@ Exemple de component compost de dos panells:
 * llista de productes (es mostra el codi)
 * formulari de producte (es mostren totes les dades del producte seleccionat a la llista)
 
-[master-detail.zip](/damm06/assets/4.1/master-detail.zip)
+[Master (JList) - Detail (JPanel): master-detail.zip](/damm06/assets/4.1/master-detail.zip)
 
-[School groups-students (GUI master-detail)](/damm06/assets/4.1/school-groupsstudents.zip)
+[Master (JList) - Detail (JTable): School groups-students](/damm06/assets/4.1/school-groupsstudents.zip)
 
 ### Component Data-Browser
 
