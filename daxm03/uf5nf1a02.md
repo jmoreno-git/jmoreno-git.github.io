@@ -269,6 +269,318 @@ public class LinkedListTester {
 
 Els mètodes **indexOf()** i **lastIndexOf()** ens proporcionen la ubicació de l'objecte buscat a la llista (la primera aparició o l'última, respectivament) o bé retornen -1 si no troben l'objecte. Cal recordar que per trobar l'objecte la implementació de la llista usa el mètode ***equals()*** definit a la classe dels objectes emmagatzemats a la llista. Cal definir allà correctament com es comparen els objectes de la llista.
 
+## Llistes de String
+
+Aquest exemple il·lustra una llista de String, com ordenar-la i com inserir-hi elements per mantenir l'ordenació.
+
+```java
+public class NameList {
+
+    public static void main(String[] args) {
+        List<String> names = new LinkedList<>();
+        //names.add(new String("Peter"));
+        names.add("Peter");
+        names.add("Laura");
+        names.add("John");
+        names.add("Mary");
+        names.add("Paul");
+        //
+        System.out.println("Names: "+names);
+        //change 'John' to 'Andrew'
+        int indexOfJohn = names.indexOf("John");
+        names.set(indexOfJohn, "Andrew");
+        System.out.println("Names: "+names);
+        names.sort(String::compareTo);
+        System.out.println("Names: "+names);
+        addSorted(names, "Joseph");
+        System.out.println("Names: "+names);
+        addSorted(names, "Zoe");
+        addSorted(names, "Alan");
+        System.out.println("Names: "+names);
+        addSorted(names, "Mary");
+        System.out.println("Names: "+names);
+    }
+    
+    /**
+     * adds 'name' to 'data' keeping order
+     * @param data the list to add new element to
+     * @param name the element to add
+     */
+    public static void addSorted(List<String> data, String name) {
+        //find index for new element
+        int index = -1;
+        for (int i = 0; i < data.size(); i++) {
+            String elem = data.get(i);
+            if ( elem.compareTo(name) > 0 ) {  //found
+                index = i;
+                break;
+            }
+        } 
+        //set element at proper index
+        if (index < 0) {
+            data.add(name);
+        } else {
+            data.add(index, name);
+        }
+        
+    }
+
+}
+```
+
+## Comparació d'objectes
+
+Per tal de poder realitzar ordenació de col·leccions, els objectes han d'implementar mètodes de comparació que permetin establir un ordre.
+
+Hi ha dos mecanismes per fer-ho.
+
+### Interface Comparable
+
+L'interface ***Comparable*** s'ha d'utilitzar per definir el mecanisme natural de comparació d'una classe d'objectes.
+
+Els objectes a comparar han d'implementar l'[***interface Comparable***](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html).
+
+Es tracta d'un interface funcional, l'únic mètode del qual és:
+
+```int compareTo(T o)```
+
+El mètode retorna un enter negatiu, zero, o un enter positiu si aquest objecte és menor que, igual a, major que l'objecte especificat, respectivament. 
+
+### Interface Comparator
+
+L'interface ***Comparator*** s'utilitza per definir comparacions lògiques diferents de la natural o bé d'objectes que no controlem, és a dir, dels quals no podem modificar la definició.
+
+Un objecte que implementi aquest interface ha de definir el mètode:
+
+```int compare(T o1, T o2)```
+
+El mètode retorna un enter negatiu, zero, o un enter positiu si l'objecte o1 és menor que, igual a, major que l'objecte o2, respectivament. 
+
+Podem definir diferents comparadors que implementin diferents mecanismes de comparació per a un mateix tipus d'objectes.
+
+## Ordenació d'elements de col·leccions
+
+La interface *List* proveeix el mètode ***sort()*** per ordenar els elements. El paràmetre del mètode és un objecte d'una classe que implementi l'interface Comparator<T>, definint de forma adequada el mètode compare(T o1, T o2).
+
+El retorn del mètode *compare()* és el següent:
+  * enter negatiu si o1 < o2
+  * 0 si o1 = o2
+  * enter positiu si o1 > o2
+
+[ListSort.java (descàrrega)](assets/5.1/5.1.2/ListSort.java)
+```java
+/**Java program to demonstrate working of Comparator 
+ * interface and Collections.sort() to sort according 
+ * to user defined criteria.
+ * @author Jose Moreno
+ */ 
+import java.util.*; 
+import java.lang.*; 
+import java.io.*; 
+
+// A class to represent a student. 
+class Student { 
+	private int 	id; 
+	private String 	name, address; 
+
+	// Constructor 
+	public Student(int id, String name, String address) { 
+		this.id = id; 
+		this.name = name; 
+		this.address = address; 
+	} 
+
+	public int getId() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	// Used to print student details in main() 
+	public String toString() { 
+		return this.id + " " + this.name + " " + this.address; 
+	} 
+} 
+
+// class to implement comparison by id
+class SortById implements Comparator<Student> { 
+	// Used for sorting in ascending order of id .
+	public int compare(Student a, Student b) { 
+		return a.getId() - b.getId(); 
+	} 
+} 
+
+// class to implement comparison by name
+class SortByName implements Comparator<Student> 
+{ 
+	// Used for sorting in ascending order of name.
+	public int compare(Student a, Student b) { 
+		return a.getName().compareTo(b.getName()); 
+	} 
+} 
+
+// Main class.
+public class ListSort { 
+	public static void main (String[] args) { 
+		List<Student> data = new ArrayList<Student>(); 
+		data.add(new Student(111, "bbbb", "london")); 
+		data.add(new Student(131, "aaaa", "nyc")); 
+		data.add(new Student(121, "cccc", "jaipur")); 
+//
+		System.out.println("Unsorted"); 
+		for (int i=0; i<data.size(); i++) 
+			System.out.println(data.get(i)); 
+//Java 7
+		Collections.sort(data, new SortById()); 
+		System.out.println("\nSorted by id"); 
+		for (int i=0; i<data.size(); i++) 
+			System.out.println(data.get(i));
+//Java 7
+		Collections.sort(data, new SortByName()); 
+		System.out.println("\nSorted by name"); 
+		for (int i=0; i<data.size(); i++) 
+			System.out.println(data.get(i));			
+//Java 8
+		System.out.println("\nSorted by id (Java 8)"); 
+		data.sort(Comparator.comparing(Student::getId));
+		data.forEach(System.out::println);
+		
+		System.out.println("\nSorted by name (Java 8)"); 
+		data.sort(Comparator.comparing(Student::getName));
+		data.forEach(System.out::println);
+		
+		System.out.println("\nReverse sorted by name (Java 8)"); 
+		data.sort(Comparator.comparing(Student::getName).reversed());
+		data.forEach(System.out::println);
+	}
+} 
+```
+
+## Llistes d'objectes
+
+Aquest exemple il·lustra com gestionar llistes d'objectes, en aquest cas, *Student*.
+
+**Classe Student**
+```java
+public class Student {
+    private String name;
+    private int qualification;
+
+    public Student(String name, int qualification) {
+        this.name = name;
+        this.qualification = qualification;
+    }
+
+    public Student(String name) {
+        this.name = name;
+    }
+    ///...
+}
+```
+
+**Classe StudentMain**
+```java
+public class StudentMain {
+
+    public static void main(String[] args) {
+        //declare and instantiate list of students
+        List<Student> students = new ArrayList<>();
+        //populate list with data
+        loadData(students);
+        //show students
+        System.out.println("Students: " + students);
+        //find student
+        int index = students.indexOf(new Student("Name84"));
+        if (index >= 0) {
+            Student s1 = students.get(index);
+            System.out.println("Name04: " + s1);
+        } else {
+            System.out.println("Name04 is not in the list");
+        }
+        List<Student> passList = 
+                getStudentsWithQualifGreaterThan(students, 5);
+        System.out.println("Number of students that pass: "+passList.size());
+        System.out.println(passList);
+        //
+        amendQualif(students, 1);
+        System.out.println(students);
+        //sort by qualification
+        students.sort(new CompareStudentsByQualification());
+        System.out.println("Students sorted by qualification: "+students);
+        //sort by name
+        students.sort(Comparator.comparing(Student::getName).reversed());
+        System.out.println("Students sorted by reversed name: "+students);
+        //sort by reversed qualification
+        students.sort(Comparator.comparing(Student::getQualification).reversed());
+        System.out.println("Students sorted by reversed qualification: "+students);
+    }
+
+    private static void loadData(List<Student> stud) {
+        Random rnd = new Random();
+        //stud.add( new Student("Peter", 4) );
+        for (int i = 0; i < 50; i++) {
+            String name = String.format("Name%02d", i + 1);
+            int qualif = rnd.nextInt(0, 11);
+            Student st = new Student(name, qualif);
+            stud.add(st);
+        }
+    }
+
+    /**
+     * get all students with qualification greater than
+     * or equal to 'qual'
+     * @param data the list of students
+     * @param qual the threshold of qualification
+     * @return a list of students with that filter
+     */
+    private static List<Student> getStudentsWithQualifGreaterThan(
+            List<Student> data, int qual) {
+        List<Student> result = new ArrayList<>();
+        for (Student s : data) {
+            if (s.getQualification() >= qual) {
+                result.add(s);
+            }
+        }
+        return result;
+    }
+    
+    /**
+     * adds 'diff' to qualifications of all students
+     * Qualifications must not be negative nor greater than 10
+     * @param data the list of students
+     * @param diff the difference of qualification to apply
+     */
+    private static void amendQualif(List<Student> data, int diff) {
+        for (Student s : data) {
+            int q = s.getQualification();
+            q += diff;
+            q = Math.min(10, q);
+            q = Math.max(0, q);
+            s.setQualification(q);
+        }
+    }
+}
+
+```
+
+Per poder comparar Students podem definir una classe que implementi l'interface Comparator.
+
+**Classe CompareStudentsByQualification**
+```java
+public class CompareStudentsByQualification implements Comparator<Student> {
+
+    @Override
+    public int compare(Student o1, Student o2) {
+        int q1 = o1.getQualification();
+        int q2 = o2.getQualification();
+        return q1 - q2;
+    }
+    
+}
+```
+
 ## Comparació de List i Set
 
 Un *Set* és una *Collection* on no pot haver-hi elements duplicats. El següent exemple il·lustra aquest fet en comparació amb una *List*.
@@ -370,135 +682,9 @@ public class ListVsSetTester {
 }	    
 ```
 
-## Comparació d'objectes
+## Introducció a la programació amb llistes
 
-Per tal de poder realitzar ordenació de col·leccions, els objectes han d'implementar mètodes de comparació que permetin establir un ordre.
-
-Hi ha dos mecanismes per fer-ho.
-
-### Interface Comparable
-
-L'interface ***Comparable*** s'ha d'utilitzar per definir el mecanisme natural de comparació d'una classe d'objectes.
-
-Els objectes a comparar han d'implementar l'[***interface Comparable***](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html).
-
-Es tracta d'un interface funcional, l'únic mètode del qual és:
-
-```int compareTo(T o)```
-
-El mètode retorna un enter negatiu, zero, o un enter positiu si aquest objecte és menor que, igual a, major que l'objecte especificat, respectivament. 
-
-### Interface Comparator
-
-L'interface ***Comparator*** s'utilitza per definir comparacions lògiques diferents de la natural o bé d'objectes que no controlem, és a dir, dels quals no podem modificar la definició.
-
-Un objecte que implementi aquest interface ha de definir el mètode:
-
-```int compare(T o1, T o2)```
-
-El mètode retorna un enter negatiu, zero, o un enter positiu si l'objecte o1 és menor que, igual a, major que l'objecte o2, respectivament. 
-
-Podem definir diferents comparadors que implementin diferents mecanismes de comparació per a un mateix tipus d'objectes.
-
-## Ordenació d'elements de col·leccions
-
-La interface *List* proveeix el mètode ***sort()*** per ordenar els elements. El paràmetre del mètode és un objecte d'una classe que implementi l'interface Comparator<T>, definint de forma adequada el mètode compare(T o1, T o2).
-
-El retorn del mètode *compare()* és el següent:
-  * enter negatiu si o1 < o2
-  * 0 si o1 = o2
-  * enter positiu si o1 > o2
-
-[ListSort.java (descàrrega)](assets/5.1/5.1.2/ListSort.java)
-```
-/**Java program to demonstrate working of Comparator 
- * interface and Collections.sort() to sort according 
- * to user defined criteria.
- * @author Jose Moreno
- */ 
-import java.util.*; 
-import java.lang.*; 
-import java.io.*; 
-
-// A class to represent a student. 
-class Student { 
-	private int 	id; 
-	private String 	name, address; 
-
-	// Constructor 
-	public Student(int id, String name, String address) { 
-		this.id = id; 
-		this.name = name; 
-		this.address = address; 
-	} 
-
-	public int getId() {
-		return id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	// Used to print student details in main() 
-	public String toString() { 
-		return this.id + " " + this.name + " " + this.address; 
-	} 
-} 
-
-// class to implement comparison by id
-class SortById implements Comparator<Student> { 
-	// Used for sorting in ascending order of id .
-	public int compare(Student a, Student b) { 
-		return a.getId() - b.getId(); 
-	} 
-} 
-
-// class to implement comparison by name
-class SortByName implements Comparator<Student> 
-{ 
-	// Used for sorting in ascending order of name.
-	public int compare(Student a, Student b) { 
-		return a.getName().compareTo(b.getName()); 
-	} 
-} 
-
-// Main class.
-public class ListSort { 
-	public static void main (String[] args) { 
-		List<Student> data = new ArrayList<Student>(); 
-		data.add(new Student(111, "bbbb", "london")); 
-		data.add(new Student(131, "aaaa", "nyc")); 
-		data.add(new Student(121, "cccc", "jaipur")); 
-//
-		System.out.println("Unsorted"); 
-		for (int i=0; i<data.size(); i++) 
-			System.out.println(data.get(i)); 
-//Java 7
-		Collections.sort(data, new SortById()); 
-		System.out.println("\nSorted by id"); 
-		for (int i=0; i<data.size(); i++) 
-			System.out.println(data.get(i));
-//Java 7
-		Collections.sort(data, new SortByName()); 
-		System.out.println("\nSorted by name"); 
-		for (int i=0; i<data.size(); i++) 
-			System.out.println(data.get(i));			
-//Java 8
-		System.out.println("\nSorted by id (Java 8)"); 
-		data.sort(Comparator.comparing(Student::getId));
-		data.forEach(System.out::println);
-		
-		System.out.println("\nSorted by name (Java 8)"); 
-		data.sort(Comparator.comparing(Student::getName));
-		data.forEach(System.out::println);
-		
-		System.out.println("\nReverse sorted by name (Java 8)"); 
-		data.sort(Comparator.comparing(Student::getName).reversed());
-		data.forEach(System.out::println);
-	}
-} 
-```
+[Aplicació de gestió d'una botiga](./uf5nf1a02-store.md)
 
 # Ús de mapes (Map)
 
