@@ -904,6 +904,11 @@ Exemple de gestió de clients en una llista. Plantilla a completar a classe com 
 
 El mateix exemple dels clients en una llista, però separant dades a model i creant una classe menú per a l'aplicació. Plantilla a completar com a exercici. [ClientManagerWithList2.zip](assets/5.1/5.1.2/ClientManagerWithList2.zip). Solució sense excepcions: [ClientManagerWithList2-full.zip](assets/5.1/5.1.2/ClientManagerWithList2-full.zip). Solució amb excepcions: [ClientManagerWithList3-full.zip](assets/5.1/5.1.2/ClientManagerWithList3-full.zip)
 
+### Exemple d'aplicació amb menú i conversor de monedes
+
+Exemple amb menú d'usuari per gestionar monedes i les seves conversions utilitzant un Map.
+
+[Currency converter](uf5nf1a02-currencyconverter.md)
 
 ## Classe Properties
 
@@ -960,5 +965,5 @@ Permet implementar una estructura en memòria que admet insercions i extraccions
 
 ![Mètodes de Deque](assets/5.1/5.1.2/deque_methods.png)
 
-Les classes [ArrayDeque<E>](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayDeque.html) i [LinkedList<E>](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html) implementen aquest interface.
+Les classes [ArrayDequeE](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayDeque.html) i [LinkedListE](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html) implementen aquest interface.
 
