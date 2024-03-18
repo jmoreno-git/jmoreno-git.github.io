@@ -581,6 +581,8 @@ public class CompareStudentsByQualification implements Comparator<Student> {
 }
 ```
 
+Exemple ampliat amb grups i estudiants per provar diferents ordenacions. [school](uf5nf1a02-sort.md)
+
 ## Comparació de List i Set
 
 Un *Set* és una *Collection* on no pot haver-hi elements duplicats. El següent exemple il·lustra aquest fet en comparació amb una *List*.
