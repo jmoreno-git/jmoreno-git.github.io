@@ -955,17 +955,17 @@ Les cues (*queue**) són memòries [FIFO](https://es.wikipedia.org/wiki/First_in
 
 ### L'interface Queue<E>
 
-Permet implementar una estructura en memòria que admet insercions de dades pel final i extraccions per l'inici.
+La *interface* [Queue](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Queue.html) permet implementar una estructura en memòria que admet insercions de dades pel final i extraccions per l'inici.
 
 ![Mètodes de Queue](assets/5.1/5.1.2/queue_methods.png)
 
-La classe LinkedList<E> implementa aquest interface.
+La classe *LinkedList<E>* implementa aquest *interface*.
 
 ### L'interface Deque<E>
 
-Permet implementar una estructura en memòria que admet insercions i extraccions de dades pels dos extrems.
+La interface [Deque](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Deque.html) Permet implementar una estructura en memòria que admet insercions i extraccions de dades pels dos extrems.
 
 ![Mètodes de Deque](assets/5.1/5.1.2/deque_methods.png)
 
-Les classes [ArrayDequeE](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayDeque.html) i [LinkedListE](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html) implementen aquest interface.
+Les classes [ArrayDeque](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayDeque.html) i [LinkedList](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html) implementen aquest interface.
 
