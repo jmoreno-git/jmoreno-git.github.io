@@ -920,6 +920,11 @@ Consulteu la documentació en línia de Java per a la llista de mètodes que imp
 
 [Exemple de seriació d'objectes a fitxer en binari](assets/5.1/5.1.3/contactobjectstream.zip)
 
+**Exercici**
+
+Programar una aplicació amb menú que permeti carregar i desar en fitxer una llista de productes. Cal implementar tres formats: CSV (text, línies, delimitat per ';'), dades primitives, objectes. Completeu el codi de la plantilla següent: [StoreFile.zip](assets/3.1/StoreFile.zip)
+Nota: s'utilitza interface per abstreure la funcionalitat comuna de les diferents classes que implementen la persistència en els diferents formats.
+
 ## Biblioteques de classes per a fitxers XML.
 
 Per treballar amb fitxers en format [XML](https://en.wikipedia.org/wiki/XML), Java proporciona dues biblioteques:
