@@ -18,7 +18,7 @@ A continuació hi ha diferents versions d'un mateix programa que realitza conver
 
 [GUI i MVC: Comunicació entre components gràfics, controladors i model](traveltimecalculator.md)
 
-[[docencia:dam:m06:ui:guimvc:start|Comunicació entre els components gràfics, els controladors i el model de dades]]
+[docencia:dam:m06:ui:guimvc:start](Comunicació entre els components gràfics, els controladors i el model de dades)
 
 Exemple d'aplicació GUI amb menú formulari i taula de productes. [guiproduct.zip](/damm06/assets/0.1/gui/guiproduct.zip)
 
